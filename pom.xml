@@ -8,7 +8,9 @@
     <artifactId>foodie-dev</artifactId>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>foodie-common</module>
+        <module>foodie-dev-common</module>
+        <module>foodie-dev-pojo</module>
+        <module>foodie-dev-mapper</module>
     </modules>
 
 <!--    1、聚合工程可以分为顶级项目（顶级工程、父工程）与子工程，这俩者的关系其实就是父子继承的关系，-->

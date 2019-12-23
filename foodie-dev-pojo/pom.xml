@@ -9,9 +9,16 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <!--默认打包方式为jar-->
-    <!--<packaging>jar</packaging>-->
-    <artifactId>foodie-common</artifactId>
+    <artifactId>foodie-dev-pojo</artifactId>
 
+    <dependencies>
+
+        <dependency>
+            <groupId>com.imooc</groupId>
+            <artifactId>foodie-dev-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+    </dependencies>
 
 </project>
