@@ -121,7 +121,7 @@
     </select>
 
 
-    <select id="getMyOrderTrend" parameterType="Map" resultType="com.imooc.pojo.OrderStatus">
+    <select id="getMyOrderTrend" parameterType="Map" resultType="com.zb.pojo.OrderStatus">
 
         SELECT
             os.order_id as orderId,

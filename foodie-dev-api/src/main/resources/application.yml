@@ -26,7 +26,7 @@ spring:
 #
 ############################################################
 mapper:
-  mappers: com.imooc.my.mapper.MyMapper
+  mappers: com.zb.my.mapper.MyMapper
   not-empty: false
   identity: MYSQL
 
