@@ -1,6 +1,6 @@
 package com.zb.service.impl;
 
-import com.zb.mapper.StuMapper;
+import com.zb.dao.StuMapper;
 import com.zb.pojo.Stu;
 import com.zb.service.StuService;
 import org.springframework.beans.factory.annotation.Autowired;
