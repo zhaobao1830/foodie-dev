@@ -1,9 +1,9 @@
 package com.zb.dao;
 
-import com.zb.dao.mapper.MyMapper;
 import com.zb.pojo.Stu;
+import org.apache.ibatis.annotations.Mapper;
 
-public interface StuMapper extends MyMapper {
+public interface StuMapper {
     int deleteByPrimaryKey(Integer id);
 
     int insert(Stu record);

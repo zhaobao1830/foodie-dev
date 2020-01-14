@@ -7,7 +7,7 @@ spring:
   datasource:                                           # 数据源的相关配置
     type: com.zaxxer.hikari.HikariDataSource          # 数据源类型：HikariCP
     driver-class-name: com.mysql.jdbc.Driver          # mysql驱动
-    url: jdbc:mysql://localhost:3306/foodie-shop-dev?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true
+    url: jdbc:mysql://localhost:3306/mmall?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true
     username: root
     password: x5219438
     hikari:
@@ -25,11 +25,12 @@ spring:
 # mybatis 配置
 #
 ############################################################
-mapper:
-  mappers: com.zb.dao.mapper.MyMapper
-  not-empty: false
-  identity: MYSQL
-
+#mapper:
+#  mappers:
+#  not-empty: false
+#  identity: MYSQL
+mybatis:
+  mapper-locations: classpath*:mappers/*.xml
 ############################################################
 #
 # web访问端口号  约定：8088
