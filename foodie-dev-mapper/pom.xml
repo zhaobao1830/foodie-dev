@@ -21,6 +21,7 @@
 
     </dependencies>
 
+<!--    下面这些就是用来配置mybatis.generator-->
     <build>
         <finalName>foodie-dev-mapper</finalName>
         <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
