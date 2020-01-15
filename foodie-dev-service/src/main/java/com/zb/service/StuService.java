@@ -1,14 +1,8 @@
 package com.zb.service;
 
-import com.zb.pojo.Stu;
+import com.zb.pojo.User;
 
 public interface StuService {
 
-    public Stu getStuInfo(int id);
-
-    public void saveStu();
-
-    public void updateStu(int id);
-
-    public void deleteStu(int id);
+    public User getStuInfo(int id);
 }
