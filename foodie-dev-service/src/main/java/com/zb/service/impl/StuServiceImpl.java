@@ -1,7 +1,9 @@
 package com.zb.service.impl;
 
 import com.zb.dao.StuMapper;
+import com.zb.dao.UserMapper;
 import com.zb.pojo.Stu;
+import com.zb.pojo.User;
 import com.zb.service.StuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,26 +14,11 @@ import org.springframework.transaction.annotation.Transactional;
 public class StuServiceImpl implements StuService {
 
     @Autowired
-    private StuMapper stuMapper;
+    private UserMapper userMapper;
 
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
-    public Stu getStuInfo(int id) {
-        return stuMapper.selectByPrimaryKey(id);
-    }
-
-    @Override
-    public void saveStu() {
-
-    }
-
-    @Override
-    public void updateStu(int id) {
-
-    }
-
-    @Override
-    public void deleteStu(int id) {
-
+    public User getStuInfo(int id) {
+        return userMapper.selectByPrimaryKey(id);
     }
 }
