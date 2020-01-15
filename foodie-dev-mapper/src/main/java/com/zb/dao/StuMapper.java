@@ -1,7 +1,6 @@
 package com.zb.dao;
 
 import com.zb.pojo.Stu;
-import org.apache.ibatis.annotations.Mapper;
 
 public interface StuMapper {
     int deleteByPrimaryKey(Integer id);
