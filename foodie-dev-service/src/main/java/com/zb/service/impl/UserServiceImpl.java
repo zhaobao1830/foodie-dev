@@ -61,6 +61,8 @@ public class UserServiceImpl implements UserService {
 
         users.setCreatedTime(new Date());
         users.setUpdatedTime(new Date());
-        return null;
+
+        usersMapper.insert(users);
+        return users;
     }
 }
