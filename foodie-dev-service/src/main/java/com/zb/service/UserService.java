@@ -15,5 +15,5 @@ public interface UserService {
      * 创建用户
      */
     // 只要是前端传给后端的list或object都可以称为BO
-    public Users createUser(UserBO userBO) throws Exception;
+    public Users createUser(UserBO userBO);
 }
