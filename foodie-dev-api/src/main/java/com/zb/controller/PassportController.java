@@ -3,10 +3,15 @@ package com.zb.controller;
 import com.zb.pojo.Users;
 import com.zb.pojo.bo.UserBO;
 import com.zb.service.UserService;
+import com.zb.utils.CookieUtils;
 import com.zb.utils.IMOOCJSONResult;
+import com.zb.utils.JsonUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping(value = "/passport")
@@ -69,7 +74,9 @@ public class PassportController {
 
     // 用户登录
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public IMOOCJSONResult login(@RequestBody UserBO userBO) {
+    public IMOOCJSONResult login(@RequestBody UserBO userBO,
+                                 HttpServletRequest request,
+                                 HttpServletResponse response) {
         String username = userBO.getUsername();
         String password = userBO.getPassword();
 
@@ -83,6 +90,11 @@ public class PassportController {
         if (user == null) {
             return IMOOCJSONResult.errorMsg("用户名和密码不匹配");
         }
+
+        user.setPassword(org.apache.commons.lang3.StringUtils.EMPTY);
+
+        CookieUtils.setCookie(request, response, "user", JsonUtils.objectToJson(user), true);
+
         return IMOOCJSONResult.ok(user);
     }
 }
