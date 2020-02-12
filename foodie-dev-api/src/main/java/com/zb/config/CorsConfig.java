@@ -17,7 +17,7 @@ public class CorsConfig {
         // 1、添加cors配置信息
         CorsConfiguration config = new CorsConfiguration();
 
-        // http://localhost:8080 为前端发起接口的地址
+        // http://localhost:8080 为前端发起接口的域名
         config.addAllowedOrigin("http://localhost:8080");
 
         // 设置是否发送cookie信息
