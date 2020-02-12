@@ -7,7 +7,6 @@ import com.zb.pojo.bo.UserBO;
 import com.zb.service.UserService;
 import com.zb.utils.DateUtil;
 import com.zb.utils.MD5Utils;
-import org.apache.commons.lang3.time.DateUtils;
 import org.n3r.idworker.Sid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,11 +41,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public Users createUser(UserBO userBO) {
         String userId = sid.nextShort();
-        Users user = new Users();
+         Users user = new Users();
         user.setId(userId);
         user.setUsername(userBO.getUsername());
         try {
-            user.setPassword(MD5Utils.getMD5Str(userBO.getPassword()));
+            user.setPassword(MD5Utils.MD5EncodeUtf8(userBO.getPassword()));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -64,6 +63,18 @@ public class UserServiceImpl implements UserService {
 
         usersMapper.insert(user);
 
+        return user;
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public Users queryUserForLogin(String username, String password) {
+        //todo 密码登陆MD5
+        String md5Password = MD5Utils.MD5EncodeUtf8(password);
+        Users user = usersMapper.selectLogin(username, md5Password);
+        if (user == null) {
+            return null;
+        }
         return user;
     }
 }

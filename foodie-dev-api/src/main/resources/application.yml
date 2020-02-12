@@ -41,3 +41,10 @@ server:
   tomcat:
     uri-encoding: UTF-8
   max-http-header-size: 80KB
+############################################################
+#
+#  password加密
+#
+############################################################
+password:
+  salt: geelysdafaqj23ou89ZXcj@#$@#$#@KJdjklj;D../dSF.,

@@ -180,4 +180,11 @@
     select count(1) from users
     where username = #{username}
   </select>
+  <select id="selectLogin" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List" />
+    from users
+    where username = #{username}
+    and password = #{password}
+  </select>
 </mapper>

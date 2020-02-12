@@ -1,5 +1,6 @@
 package com.zb.controller;
 
+import com.zb.pojo.Users;
 import com.zb.pojo.bo.UserBO;
 import com.zb.service.UserService;
 import com.zb.utils.IMOOCJSONResult;
@@ -64,5 +65,24 @@ public class PassportController {
         userService.createUser(userBO);
 
         return IMOOCJSONResult.ok();
+    }
+
+    // 用户登录
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public IMOOCJSONResult login(@RequestBody UserBO userBO) {
+        String username = userBO.getUsername();
+        String password = userBO.getPassword();
+
+        // 0、判断用户名和密码必须不为空
+        if (StringUtils.isBlank(username) ||
+                StringUtils.isBlank(password)) {
+            return IMOOCJSONResult.errorMsg("用户名或密码不能为空");
+        }
+
+        Users user = userService.queryUserForLogin(username, password);
+        if (user == null) {
+            return IMOOCJSONResult.errorMsg("用户名和密码不匹配");
+        }
+        return IMOOCJSONResult.ok(user);
     }
 }
