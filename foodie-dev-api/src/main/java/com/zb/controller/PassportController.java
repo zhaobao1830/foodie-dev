@@ -6,6 +6,7 @@ import com.zb.service.UserService;
 import com.zb.utils.CookieUtils;
 import com.zb.utils.IMOOCJSONResult;
 import com.zb.utils.JsonUtils;
+import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class PassportController {
     @Autowired
     public UserService userService;
 
-    // 判断用户名存在
+    @ApiOperation(value = "用户名是否存在", notes = "用户名是否存在", httpMethod = "GET")
     @RequestMapping(value = "/usernameIsExist", method = RequestMethod.GET)
     public IMOOCJSONResult usernameIsExist(@RequestParam("username") String username) {
 
@@ -38,7 +39,7 @@ public class PassportController {
         return IMOOCJSONResult.ok();
     }
 
-    // 用户注册
+    @ApiOperation(value = "用户注册", notes = "用户注册", httpMethod = "POST")
     @RequestMapping(value = "/regist", method = RequestMethod.POST)
     public IMOOCJSONResult regist(@RequestBody UserBO userBO) {
 
@@ -72,7 +73,7 @@ public class PassportController {
         return IMOOCJSONResult.ok();
     }
 
-    // 用户登录
+    @ApiOperation(value = "用户登录", notes = "用户登录", httpMethod = "POST")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public IMOOCJSONResult login(@RequestBody UserBO userBO,
                                  HttpServletRequest request,
@@ -96,5 +97,20 @@ public class PassportController {
         CookieUtils.setCookie(request, response, "user", JsonUtils.objectToJson(user), true);
 
         return IMOOCJSONResult.ok(user);
+    }
+
+    @ApiOperation(value = "用户退出登录", notes = "用户退出登录", httpMethod = "POST")
+    @RequestMapping(value = "/layout", method = RequestMethod.POST)
+    public IMOOCJSONResult layout(@RequestParam String userId,
+                                  HttpServletRequest request,
+                                  HttpServletResponse response) {
+
+        // 清除用户的相关信息的cookie
+        CookieUtils.deleteCookie(request, response, "user");
+
+        // TODO 用户退出登录，需要清空购物车
+        // TODO 分布式会话中需要清除用户数据
+
+        return IMOOCJSONResult.ok();
     }
 }
