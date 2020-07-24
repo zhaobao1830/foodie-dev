@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @Api(value = "注册登录", tags = {"用于注册登录的相关接口"})
 @RestController
-@RequestMapping(value = "/passport")
+@RequestMapping("passport")
 public class PassportController {
 
     @Autowired
