@@ -6,6 +6,7 @@ import com.zb.service.UserService;
 import com.zb.utils.CookieUtils;
 import com.zb.utils.IMOOCJSONResult;
 import com.zb.utils.JsonUtils;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+@Api(value = "注册登录", tags = {"用于注册登录的相关接口"})
 @RestController
 @RequestMapping(value = "/passport")
 public class PassportController {
