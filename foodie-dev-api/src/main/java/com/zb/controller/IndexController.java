@@ -3,11 +3,13 @@ package com.zb.controller;
 import com.zb.enums.YesOrNo;
 import com.zb.pojo.Carousel;
 import com.zb.pojo.Category;
+import com.zb.pojo.vo.CategoryVO;
 import com.zb.service.CarouselService;
 import com.zb.service.CategoryService;
 import com.zb.utils.IMOOCJSONResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,9 +39,22 @@ public class IndexController {
      * 2. 如果鼠标上移到大分类，则加载其子分类的内容，如果已经存在子分类，则不需要加载（懒加载）
      */
     @ApiOperation(value = "获取商品分类(一级分类)", notes = "获取商品分类(一级分类)", httpMethod = "GET")
-    @GetMapping("/cats")
+    @RequestMapping(value = "/cats", method = RequestMethod.GET)
     public IMOOCJSONResult cats() {
         List<Category> categoryList = categoryService.queryAllRootLevelCat();
         return IMOOCJSONResult.ok(categoryList);
+    }
+
+    @ApiOperation(value = "获取商品子分类", notes = "获取商品子分类", httpMethod = "GET")
+    @RequestMapping(value = "/subCat/{rootCatId}", method = RequestMethod.GET)
+    public IMOOCJSONResult subCat(
+            @ApiParam(name = "rootCatId", value = "一级分类id", required = true)
+            @PathVariable Integer rootCatId) {
+        if (rootCatId == null) {
+            return IMOOCJSONResult.errorMsg("分类不存在");
+        }
+
+        List<CategoryVO> list = categoryService.getSubCatList(rootCatId);
+        return IMOOCJSONResult.ok(list);
     }
 }
