@@ -152,7 +152,7 @@
     where type = #{type}
   </select>
   <select id="getSubCatList" resultMap="myCategoryVO" parameterType="int">
-SELECT
+     SELECT
         f.id as id,
         f.`name` as `name`,
         f.type as type,
