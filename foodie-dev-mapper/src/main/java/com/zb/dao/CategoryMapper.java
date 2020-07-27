@@ -2,6 +2,7 @@ package com.zb.dao;
 
 import com.zb.pojo.Carousel;
 import com.zb.pojo.Category;
+import com.zb.pojo.vo.CategoryVO;
 
 import java.util.List;
 
@@ -19,4 +20,6 @@ public interface CategoryMapper {
     int updateByPrimaryKey(Category record);
 
     List<Category> selectAllCategory(Integer type);
+
+    public List<CategoryVO> getSubCatList(Integer rootCatId);
 }
