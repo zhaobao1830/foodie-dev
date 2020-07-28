@@ -4,6 +4,7 @@ import com.zb.enums.YesOrNo;
 import com.zb.pojo.Carousel;
 import com.zb.pojo.Category;
 import com.zb.pojo.vo.CategoryVO;
+import com.zb.pojo.vo.NewItemsVO;
 import com.zb.service.CarouselService;
 import com.zb.service.CategoryService;
 import com.zb.utils.IMOOCJSONResult;
@@ -56,5 +57,18 @@ public class IndexController {
 
         List<CategoryVO> list = categoryService.getSubCatList(rootCatId);
         return IMOOCJSONResult.ok(list);
+    }
+
+    @ApiOperation(value = "查询每个一级分类下的最新6条商品数据", notes = "查询每个一级分类下的最新6条商品数据", httpMethod = "GET")
+    @GetMapping("/sixNewItems/{rootCatId}")
+    public IMOOCJSONResult sixNewItems(
+            @ApiParam(name = "rootCatId", value = "一级分类id", required = true)
+            @PathVariable Integer rootCatId) {
+        if (rootCatId == null) {
+            return IMOOCJSONResult.errorMsg("分类不存在");
+        }
+
+        List<NewItemsVO> newItemsVOList = categoryService.getSixNewItemsLazy(rootCatId);
+        return IMOOCJSONResult.ok(newItemsVOList);
     }
 }
