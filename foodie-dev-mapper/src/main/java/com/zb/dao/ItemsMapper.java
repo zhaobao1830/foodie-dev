@@ -1,6 +1,11 @@
 package com.zb.dao;
 
 import com.zb.pojo.Items;
+import com.zb.pojo.ItemsImg;
+import com.zb.pojo.ItemsParam;
+import com.zb.pojo.ItemsSpec;
+
+import java.util.List;
 
 public interface ItemsMapper {
     int deleteByPrimaryKey(String id);

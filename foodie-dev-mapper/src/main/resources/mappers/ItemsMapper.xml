@@ -14,7 +14,7 @@
     </constructor>
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.zb.pojo.Items" >
-    <constructor >
+    <constructor>
       <idArg column="id" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="item_name" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="cat_id" jdbcType="INTEGER" javaType="java.lang.Integer" />

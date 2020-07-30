@@ -2,6 +2,8 @@ package com.zb.dao;
 
 import com.zb.pojo.ItemsSpec;
 
+import java.util.List;
+
 public interface ItemsSpecMapper {
     int deleteByPrimaryKey(String id);
 
@@ -14,4 +16,6 @@ public interface ItemsSpecMapper {
     int updateByPrimaryKeySelective(ItemsSpec record);
 
     int updateByPrimaryKey(ItemsSpec record);
+
+    public List<ItemsSpec> getItemsSpec(String itemId);
 }

@@ -1,6 +1,9 @@
 package com.zb.dao;
 
 import com.zb.pojo.ItemsImg;
+import com.zb.pojo.ItemsSpec;
+
+import java.util.List;
 
 public interface ItemsImgMapper {
     int deleteByPrimaryKey(String id);
@@ -14,4 +17,6 @@ public interface ItemsImgMapper {
     int updateByPrimaryKeySelective(ItemsImg record);
 
     int updateByPrimaryKey(ItemsImg record);
+
+    public List<ItemsImg> getItemsImg(String itemId);
 }

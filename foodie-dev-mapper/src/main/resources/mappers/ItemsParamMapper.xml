@@ -14,7 +14,7 @@
       <arg column="weight" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="storage_method" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="eat_method" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="created_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="created_time" jdbcType="TIMESTAMP" javaType="java.util.Date"  />
       <arg column="updated_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
     </constructor>
   </resultMap>
@@ -187,4 +187,10 @@
       updated_time = #{updatedTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=VARCHAR}
   </update>
+  <select id="selectByItemId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from items_param
+    where item_id = #{itemId,jdbcType=VARCHAR}
+  </select>
 </mapper>

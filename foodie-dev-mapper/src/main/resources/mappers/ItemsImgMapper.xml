@@ -12,6 +12,13 @@
       <arg column="updated_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
     </constructor>
   </resultMap>
+  <resultMap id="BaseItemsImg" type="com.zb.pojo.ItemsImg">
+    <id column="id" property="id"/>
+    <result column="itemId" property="itemId"/>
+    <result column="url" property="url"/>
+    <result column="sort" property="sort"/>
+    <result column="isMain" property="isMain"/>
+  </resultMap>
   <sql id="Base_Column_List" >
     id, item_id, url, sort, is_main, created_time, updated_time
   </sql>
@@ -116,4 +123,9 @@
       updated_time = #{updatedTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=VARCHAR}
   </update>
+  <select id="getItemsImg" resultMap="BaseItemsImg" parameterType="string">
+    select *
+    from items_img
+    where item_id = #{itemId}
+  </select>
 </mapper>
