@@ -1,20 +1,18 @@
 package com.zb.service.impl;
 
-import com.zb.dao.ItemsImgMapper;
-import com.zb.dao.ItemsMapper;
-import com.zb.dao.ItemsParamMapper;
-import com.zb.dao.ItemsSpecMapper;
-import com.zb.pojo.Items;
-import com.zb.pojo.ItemsImg;
-import com.zb.pojo.ItemsParam;
-import com.zb.pojo.ItemsSpec;
+import com.zb.dao.*;
+import com.zb.enums.CommentLevel;
+import com.zb.pojo.*;
+import com.zb.pojo.vo.CommentLevelCountsVO;
 import com.zb.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ItemServiceImpl implements ItemService {
@@ -30,6 +28,9 @@ public class ItemServiceImpl implements ItemService {
 
     @Autowired
     private ItemsParamMapper itemsParamMapper;
+
+    @Autowired
+    private ItemsCommentsMapper itemsCommentsMapper;
 
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
@@ -53,5 +54,30 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public ItemsParam queryItemParam(String itemId) {
         return itemsParamMapper.selectByItemId(itemId);
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public CommentLevelCountsVO queryCommentCounts(String itemId) {
+        Integer goodCounts = getCommentCounts(itemId, CommentLevel.GOOD.type);
+        Integer normalCounts = getCommentCounts(itemId, CommentLevel.NORMAL.type);
+        Integer badCounts = getCommentCounts(itemId, CommentLevel.BAD.type);
+        Integer totalCounts = goodCounts + normalCounts + badCounts;
+
+        CommentLevelCountsVO countsVO = new CommentLevelCountsVO();
+        countsVO.setTotalCounts(totalCounts);
+        countsVO.setGoodCounts(goodCounts);
+        countsVO.setNormalCounts(normalCounts);
+        countsVO.setBadCounts(badCounts);
+
+        return countsVO;
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    Integer getCommentCounts(String itemId, Integer level) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("itemId", itemId);
+        map.put("level", level);
+        return itemsCommentsMapper.selectCount(map);
     }
 }

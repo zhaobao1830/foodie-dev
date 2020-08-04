@@ -152,4 +152,14 @@
       updated_time = #{updatedTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=VARCHAR}
   </update>
+  <resultMap id="byFiledSvue" type="int">
+    <result column="count(*)" jdbcType="VARCHAR"/>
+  </resultMap>
+  <select id="selectCount" resultMap="byFiledSvue" parameterType="Map">
+    select
+    COUNT(*)
+    from items_comments
+    where item_id = #{paramsMap.itemId,jdbcType=VARCHAR}
+    and comment_level = #{paramsMap.level}
+  </select>
 </mapper>
