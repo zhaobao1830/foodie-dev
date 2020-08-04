@@ -1,7 +1,6 @@
-package com.zb.dao;
+package com.zb.mapper;
 
 import com.zb.pojo.ItemsImg;
-import com.zb.pojo.ItemsSpec;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.zb.dao;
+package com.zb.mapper;
 
 import com.zb.pojo.Stu;
 

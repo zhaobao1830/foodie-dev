@@ -1,6 +1,5 @@
-package com.zb.dao;
+package com.zb.mapper;
 
-import com.zb.pojo.Carousel;
 import com.zb.pojo.Category;
 import com.zb.pojo.vo.CategoryVO;
 import com.zb.pojo.vo.NewItemsVO;
