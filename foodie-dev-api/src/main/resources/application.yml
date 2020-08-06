@@ -51,3 +51,8 @@ server:
 ############################################################
 password:
   salt: geelysdafaqj23ou89ZXcj@#$@#$#@KJdjklj;D../dSF.,
+# 分页插件配置
+pagehelper:
+  helperDialect: mysql
+#  是否支持分页参数的传参
+  supportMethodsArguments: true

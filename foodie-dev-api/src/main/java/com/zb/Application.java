@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 // 扫描mybatis mapper下的包
-@MapperScan(basePackages = "com.zb.dao")
+@MapperScan(basePackages = "com.zb.mapper")
 // 扫描所有包以及相关组件包
 @ComponentScan(basePackages = {"com.zb", "org.n3r.idworker"})
 public class Application {

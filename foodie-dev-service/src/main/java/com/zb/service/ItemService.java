@@ -5,6 +5,9 @@ import com.zb.pojo.ItemsImg;
 import com.zb.pojo.ItemsParam;
 import com.zb.pojo.ItemsSpec;
 import com.zb.pojo.vo.CommentLevelCountsVO;
+import com.zb.utils.PagedGridResult;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -42,4 +45,14 @@ public interface ItemService {
      * @param itemId
      */
     public CommentLevelCountsVO queryCommentCounts(String itemId);
+
+
+    /**
+     * 根据商品id查询商品的评价（分页）
+     * @param itemId
+     * @param level
+     * @return
+     */
+    public PagedGridResult queryPagedComments(String itemId, Integer level,
+                                              Integer page, Integer pageSize);
 }
