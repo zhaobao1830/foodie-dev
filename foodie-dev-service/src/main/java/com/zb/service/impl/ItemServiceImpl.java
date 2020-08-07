@@ -7,6 +7,7 @@ import com.zb.enums.CommentLevel;
 import com.zb.pojo.*;
 import com.zb.pojo.vo.CommentLevelCountsVO;
 import com.zb.pojo.vo.ItemCommentVO;
+import com.zb.pojo.vo.SearchItemsVO;
 import com.zb.service.ItemService;
 import com.zb.utils.DesensitizationUtil;
 import com.zb.utils.PagedGridResult;
@@ -111,6 +112,32 @@ public class ItemServiceImpl implements ItemService {
         for (ItemCommentVO vo : list) {
             vo.setNickname(DesensitizationUtil.commonDisplay(vo.getNickname()));
         }
+
+        return setterPagedGrid(list, page);
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public PagedGridResult searhItemsByKeywords(String keywords, String sort, Integer page, Integer pageSize) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("keywords", keywords);
+        map.put("sort", sort);
+
+        PageHelper.startPage(page, pageSize);
+        List<SearchItemsVO> list = itemsMapperCustom.searchItemsByKeywords(map);
+
+        return setterPagedGrid(list, page);
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public PagedGridResult searhItemsByCatId(Integer catId, String sort, Integer page, Integer pageSize) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("catId", catId);
+        map.put("sort", sort);
+
+        PageHelper.startPage(page, pageSize);
+        List<SearchItemsVO> list = itemsMapperCustom.searchItemsByCatId(map);
 
         return setterPagedGrid(list, page);
     }
