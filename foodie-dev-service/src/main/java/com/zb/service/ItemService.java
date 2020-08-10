@@ -5,9 +5,8 @@ import com.zb.pojo.ItemsImg;
 import com.zb.pojo.ItemsParam;
 import com.zb.pojo.ItemsSpec;
 import com.zb.pojo.vo.CommentLevelCountsVO;
+import com.zb.pojo.vo.ShopcartVO;
 import com.zb.utils.PagedGridResult;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -78,4 +77,11 @@ public interface ItemService {
      */
     public PagedGridResult searhItemsByCatId(Integer catId, String sort,
                                       Integer page, Integer pageSize);
+
+    /**
+     * 根据规格ids查询最新的购物车中商品数据（用于刷新渲染购物车中的商品数据）
+     * @param specIds
+     * @return
+     */
+    public List<ShopcartVO> queryItemsBySpecIds(String specIds);
 }
