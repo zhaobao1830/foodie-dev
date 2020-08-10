@@ -17,6 +17,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Api(value = "商品接口", tags = {"商品信息展示的相关接口"})
@@ -202,4 +204,21 @@ public class ItemsController extends BaseController{
         return IMOOCJSONResult.ok(list);
     }
 
+    @ApiOperation(value = "从购物车中删除商品", notes = "从购物车中删除商品", httpMethod = "POST")
+    @PostMapping("/del")
+    public IMOOCJSONResult del(
+            @RequestParam String userId,
+            @RequestParam String itemSpecId,
+            HttpServletRequest request,
+            HttpServletResponse response
+    ) {
+
+        if (StringUtils.isBlank(userId) || StringUtils.isBlank(itemSpecId)) {
+            return IMOOCJSONResult.errorMsg("参数不能为空");
+        }
+
+        // TODO 用户在页面删除购物车中的商品数据，如果此时用户已经登录，则需要同步删除后端购物车中的商品
+
+        return IMOOCJSONResult.ok();
+    }
 }
