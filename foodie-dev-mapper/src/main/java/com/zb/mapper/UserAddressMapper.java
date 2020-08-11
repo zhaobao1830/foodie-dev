@@ -18,4 +18,6 @@ public interface UserAddressMapper {
     int updateByPrimaryKey(UserAddress record);
 
     List<UserAddress> selectByUserId(String userId);
+
+    int deleteByUserIdAndaddressId(String userId, String addressId);
 }
