@@ -6,7 +6,7 @@
 spring:
   datasource:                                           # 数据源的相关配置
     type: com.zaxxer.hikari.HikariDataSource          # 数据源类型：HikariCP
-    driver-class-name: com.mysql.jdbc.Driver          # mysql驱动
+    driver-class-name: com.mysql.cj.jdbc.Driver         # mysql驱动
     url: jdbc:mysql://localhost:3306/foodie-shop-dev?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true
     username: root
     password: x5219438
@@ -19,7 +19,9 @@ spring:
       pool-name: DateSourceHikariCP     # 连接池名字
       max-lifetime: 1800000           # 连接的生命时长（毫秒），超时而且没被使用则被释放（retired），默认:30分钟 1800000ms
       connection-test-query: SELECT 1
-
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
 ############################################################
 #
 # mybatis 配置
