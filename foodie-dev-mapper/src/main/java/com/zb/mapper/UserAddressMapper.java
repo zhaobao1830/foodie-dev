@@ -20,4 +20,6 @@ public interface UserAddressMapper {
     List<UserAddress> selectByUserId(String userId);
 
     int deleteByUserIdAndaddressId(String userId, String addressId);
+
+    List<UserAddress> select(UserAddress userAddress);
 }

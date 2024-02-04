@@ -1,5 +1,6 @@
 package com.zb.service.impl;
 
+import com.zb.enums.YesOrNo;
 import com.zb.mapper.UserAddressMapper;
 import com.zb.pojo.UserAddress;
 import com.zb.pojo.bo.AddressBO;
@@ -35,7 +36,7 @@ public class AddressServiceImpl implements AddressService {
         // 1. 判断当前用户是否存在地址，如果没有，则新增为‘默认地址’
         int isDefault = 0;
         List<UserAddress> userAddressList = this.queryAll(addressBO.getUserId());
-        if (userAddressList.size() == 0) {
+        if (userAddressList.isEmpty()) {
             isDefault = 1;
         }
 
@@ -73,5 +74,27 @@ public class AddressServiceImpl implements AddressService {
     @Override
     public void deleteUserAddress(String userId, String addressId) {
         userAddressMapper.deleteByUserIdAndaddressId(userId, addressId);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    @Override
+    public void updateUserAddressToBeDefault(String userId, String addressId) {
+
+        // 1. 查找默认地址，设置为不默认
+        UserAddress queryAddress = new UserAddress();
+        queryAddress.setUserId(userId);
+        queryAddress.setIsDefault(YesOrNo.YES.type);
+        List<UserAddress> list  = userAddressMapper.select(queryAddress);
+        for (UserAddress ua : list) {
+            ua.setIsDefault(YesOrNo.NO.type);
+            userAddressMapper.updateByPrimaryKeySelective(ua);
+        }
+
+        // 2. 根据地址id修改为默认的地址
+        UserAddress defaultAddress = new UserAddress();
+        defaultAddress.setId(addressId);
+        defaultAddress.setUserId(userId);
+        defaultAddress.setIsDefault(YesOrNo.YES.type);
+        userAddressMapper.updateByPrimaryKeySelective(defaultAddress);
     }
 }

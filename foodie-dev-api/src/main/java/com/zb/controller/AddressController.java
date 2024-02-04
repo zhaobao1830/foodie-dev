@@ -118,4 +118,18 @@ public class AddressController {
 
         return IMOOCJSONResult.ok();
     }
+
+    @ApiOperation(value = "用户设置默认地址", notes = "用户设置默认地址", httpMethod = "POST")
+    @PostMapping("/setDefalut")
+    public IMOOCJSONResult setDefalut(
+            @RequestParam String userId,
+            @RequestParam String addressId) {
+
+        if (StringUtils.isBlank(userId) || StringUtils.isBlank(addressId)) {
+            return IMOOCJSONResult.errorMsg("");
+        }
+
+        addressService.updateUserAddressToBeDefault(userId, addressId);
+        return IMOOCJSONResult.ok();
+    }
 }
