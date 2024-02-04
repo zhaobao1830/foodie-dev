@@ -155,7 +155,7 @@
   <resultMap id="byFiledSvue" type="int">
     <result column="count(*)" jdbcType="VARCHAR"/>
   </resultMap>
-  <select id="selectCount" resultMap="byFiledSvue" parameterType="Map">
+  <select id="selectCount" resultMap="byFiledSvue" parameterType="map">
     select
     COUNT(*)
     from items_comments

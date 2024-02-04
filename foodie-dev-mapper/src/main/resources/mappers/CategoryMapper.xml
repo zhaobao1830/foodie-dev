@@ -183,8 +183,8 @@
     WHERE
         f.father_id = #{rootCatId}
   </select>
-  <select id="getSixNewItemsLazy" resultMap="myNewItemsVO" parameterType="Map">
-SELECT
+  <select id="getSixNewItemsLazy" resultMap="myNewItemsVO" parameterType="map">
+        SELECT
             f.id as rootCatId,
             f.`name` as rootCatName,
             f.slogan as slogan,
