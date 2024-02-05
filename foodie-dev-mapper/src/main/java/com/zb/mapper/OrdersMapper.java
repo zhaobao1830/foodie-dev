@@ -14,4 +14,7 @@ public interface OrdersMapper {
     int updateByPrimaryKeySelective(Orders record);
 
     int updateByPrimaryKey(Orders record);
+
+    // 项目里的selectOne都有问题
+    Orders selectOne(Orders orders);
 }
