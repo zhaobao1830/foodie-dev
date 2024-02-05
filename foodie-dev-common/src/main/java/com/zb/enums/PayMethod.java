@@ -1,8 +1,8 @@
 package com.zb.enums;
 
 /**
- * @Author：zhaobao1830
- * @Date：2024-02-05 11:49
+ * @Author: zhaobao1830
+ * @Date: 2024-02-05 11:49
  * @Description: 支付方式枚举
  */
 

@@ -1,7 +1,7 @@
 package com.zb.enums;
 
 /**
- * @Desc: 是否 枚举
+ * @Description: 是否 枚举
  */
 public enum YesOrNo {
     NO(0, "否"),

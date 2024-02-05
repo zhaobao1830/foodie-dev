@@ -3,11 +3,8 @@ package com.zb.utils;
 import java.util.List;
 
 /**
- * 
- * @Title: PagedGridResult.java
- * @Package com.imooc.utils
+ *
  * @Description: 用来返回分页Grid的数据格式
- * Copyright: Copyright (c) 2019
  */
 public class PagedGridResult {
 	

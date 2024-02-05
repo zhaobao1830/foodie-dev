@@ -1,7 +1,7 @@
 package com.zb.enums;
 
 /**
- * @desc 性别 枚举
+ * @Description: 性别 枚举
  */
 public enum Sex {
 

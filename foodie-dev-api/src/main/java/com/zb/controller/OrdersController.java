@@ -24,8 +24,8 @@ import org.springframework.web.client.RestTemplate;
 import java.util.Objects;
 
 /**
- * @Author：zhaobao1830
- * @Date：2024-02-05 08:49
+ * @Author: zhaobao1830
+ * @Date: 2024-02-05 08:49
  */
 @Api(value = "订单相关", tags = {"订单相关的api接口"})
 @RequestMapping("orders")
@@ -81,6 +81,6 @@ public class OrdersController extends BaseController{
             return IMOOCJSONResult.errorMsg("支付中心订单创建失败，请联系管理员！");
         }
 
-        return IMOOCJSONResult.ok();
+        return IMOOCJSONResult.ok(orderId);
     }
 }

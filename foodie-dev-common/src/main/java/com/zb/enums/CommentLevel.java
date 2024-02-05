@@ -1,7 +1,7 @@
 package com.zb.enums;
 
 /**
- * @Desc: 商品评价等级 枚举
+ * @Description: 商品评价等级 枚举
  */
 public enum CommentLevel {
     GOOD(1, "好评"),
