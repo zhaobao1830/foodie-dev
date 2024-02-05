@@ -18,7 +18,9 @@ public class CorsConfig {
         CorsConfiguration config = new CorsConfiguration();
 
         // http://localhost:8080 为前端发起接口的域名
-        config.addAllowedOrigin("http://localhost:8080");
+        // springBoot2.4以上，AllowedOrigin改成了AllowedOriginPattern
+        config.addAllowedOriginPattern("http://localhost:8089");
+        config.addAllowedOriginPattern("*");
 
         // 设置是否发送cookie信息
         config.setAllowCredentials(true);
