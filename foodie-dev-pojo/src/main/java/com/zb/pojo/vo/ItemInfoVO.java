@@ -1,9 +1,9 @@
 package com.zb.pojo.vo;
 
-import com.zb.pojo.Items;
-import com.zb.pojo.ItemsImg;
-import com.zb.pojo.ItemsParam;
-import com.zb.pojo.ItemsSpec;
+import com.zb.pojo.model.Items;
+import com.zb.pojo.model.ItemsImg;
+import com.zb.pojo.model.ItemsParam;
+import com.zb.pojo.model.ItemsSpec;
 
 import java.util.List;
 

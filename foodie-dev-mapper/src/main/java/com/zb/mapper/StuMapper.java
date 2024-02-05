@@ -1,6 +1,6 @@
 package com.zb.mapper;
 
-import com.zb.pojo.Stu;
+import com.zb.pojo.model.Stu;
 
 public interface StuMapper {
     int deleteByPrimaryKey(Integer id);

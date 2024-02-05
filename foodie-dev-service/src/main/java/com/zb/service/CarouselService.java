@@ -1,6 +1,6 @@
 package com.zb.service;
 
-import com.zb.pojo.Carousel;
+import com.zb.pojo.model.Carousel;
 
 import java.util.List;
 

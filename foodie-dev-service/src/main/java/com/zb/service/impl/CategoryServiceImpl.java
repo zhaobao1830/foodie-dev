@@ -1,7 +1,7 @@
 package com.zb.service.impl;
 
 import com.zb.mapper.CategoryMapper;
-import com.zb.pojo.Category;
+import com.zb.pojo.model.Category;
 import com.zb.pojo.vo.CategoryVO;
 import com.zb.pojo.vo.NewItemsVO;
 import com.zb.service.CategoryService;

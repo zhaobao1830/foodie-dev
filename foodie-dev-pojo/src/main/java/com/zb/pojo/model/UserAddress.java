@@ -1,4 +1,4 @@
-package com.zb.pojo;
+package com.zb.pojo.model;
 
 import java.util.Date;
 

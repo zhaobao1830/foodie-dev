@@ -1,6 +1,6 @@
 package com.zb.service;
 
-import com.zb.pojo.Category;
+import com.zb.pojo.model.Category;
 import com.zb.pojo.vo.CategoryVO;
 import com.zb.pojo.vo.NewItemsVO;
 

@@ -1,6 +1,6 @@
 package com.zb.mapper;
 
-import com.zb.pojo.ItemsImg;
+import com.zb.pojo.model.ItemsImg;
 
 import java.util.List;
 

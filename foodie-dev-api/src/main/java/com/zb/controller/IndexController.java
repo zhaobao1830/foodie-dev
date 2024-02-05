@@ -1,8 +1,8 @@
 package com.zb.controller;
 
 import com.zb.enums.YesOrNo;
-import com.zb.pojo.Carousel;
-import com.zb.pojo.Category;
+import com.zb.pojo.model.Carousel;
+import com.zb.pojo.model.Category;
 import com.zb.pojo.vo.CategoryVO;
 import com.zb.pojo.vo.NewItemsVO;
 import com.zb.service.CarouselService;

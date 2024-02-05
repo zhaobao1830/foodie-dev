@@ -1,6 +1,6 @@
 package com.zb.mapper;
 
-import com.zb.pojo.ItemsComments;
+import com.zb.pojo.model.ItemsComments;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.Map;

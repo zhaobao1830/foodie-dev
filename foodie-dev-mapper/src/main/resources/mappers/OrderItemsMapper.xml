@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.zb.mapper.OrderItemsMapper" >
-  <resultMap id="BaseResultMap" type="com.zb.pojo.OrderItems" >
+  <resultMap id="BaseResultMap" type="com.zb.pojo.model.OrderItems" >
     <constructor >
       <idArg column="id" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="order_id" jdbcType="VARCHAR" javaType="java.lang.String" />
@@ -28,7 +28,7 @@
     delete from order_items
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.zb.pojo.OrderItems" >
+  <insert id="insert" parameterType="com.zb.pojo.model.OrderItems" >
     insert into order_items (id, order_id, item_id, 
       item_img, item_name, item_spec_id, 
       item_spec_name, price, buy_counts
@@ -38,7 +38,7 @@
       #{itemSpecName,jdbcType=VARCHAR}, #{price,jdbcType=INTEGER}, #{buyCounts,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.zb.pojo.OrderItems" >
+  <insert id="insertSelective" parameterType="com.zb.pojo.model.OrderItems" >
     insert into order_items
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -99,7 +99,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zb.pojo.OrderItems" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.zb.pojo.model.OrderItems" >
     update order_items
     <set >
       <if test="orderId != null" >
@@ -129,7 +129,7 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zb.pojo.OrderItems" >
+  <update id="updateByPrimaryKey" parameterType="com.zb.pojo.model.OrderItems" >
     update order_items
     set order_id = #{orderId,jdbcType=VARCHAR},
       item_id = #{itemId,jdbcType=VARCHAR},

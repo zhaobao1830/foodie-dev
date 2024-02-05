@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.zb.mapper.UsersMapper" >
-  <resultMap id="BaseResultMap" type="com.zb.pojo.Users" >
+  <resultMap id="BaseResultMap" type="com.zb.pojo.model.Users" >
     <constructor >
       <idArg column="id" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="username" jdbcType="VARCHAR" javaType="java.lang.String" />
@@ -31,7 +31,7 @@
     delete from users
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.zb.pojo.Users" >
+  <insert id="insert" parameterType="com.zb.pojo.model.Users" >
     insert into users (id, username, password, 
       nickname, realname, face, 
       mobile, email, sex, 
@@ -43,7 +43,7 @@
       #{birthday,jdbcType=DATE}, #{createdTime,jdbcType=TIMESTAMP}, #{updatedTime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.zb.pojo.Users" >
+  <insert id="insertSelective" parameterType="com.zb.pojo.model.Users" >
     insert into users
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -122,7 +122,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zb.pojo.Users" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.zb.pojo.model.Users" >
     update users
     <set >
       <if test="username != null" >
@@ -161,7 +161,7 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zb.pojo.Users" >
+  <update id="updateByPrimaryKey" parameterType="com.zb.pojo.model.Users" >
     update users
     set username = #{username,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},

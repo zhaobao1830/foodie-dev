@@ -2,7 +2,7 @@ package com.zb.service.impl;
 
 import com.zb.mapper.UsersMapper;
 import com.zb.enums.Sex;
-import com.zb.pojo.Users;
+import com.zb.pojo.model.Users;
 import com.zb.pojo.bo.UserBO;
 import com.zb.service.UserService;
 import com.zb.utils.DateUtil;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.zb.mapper.ItemsSpecMapper" >
-  <resultMap id="BaseResultMap" type="com.zb.pojo.ItemsSpec" >
+  <resultMap id="BaseResultMap" type="com.zb.pojo.model.ItemsSpec" >
     <constructor >
       <idArg column="id" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="item_id" jdbcType="VARCHAR" javaType="java.lang.String" />
@@ -14,7 +14,7 @@
       <arg column="updated_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
     </constructor>
   </resultMap>
-  <resultMap id="BaseItemsSpec" type="com.zb.pojo.ItemsSpec">
+  <resultMap id="BaseItemsSpec" type="com.zb.pojo.model.ItemsSpec">
     <id column="id" property="id"/>
     <result column="itemId" property="itemId"/>
     <result column="name" property="name"/>
@@ -37,7 +37,7 @@
     delete from items_spec
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.zb.pojo.ItemsSpec" >
+  <insert id="insert" parameterType="com.zb.pojo.model.ItemsSpec" >
     insert into items_spec (id, item_id, name, 
       stock, discounts, price_discount, 
       price_normal, created_time, updated_time
@@ -47,7 +47,7 @@
       #{priceNormal,jdbcType=INTEGER}, #{createdTime,jdbcType=TIMESTAMP}, #{updatedTime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.zb.pojo.ItemsSpec" >
+  <insert id="insertSelective" parameterType="com.zb.pojo.model.ItemsSpec" >
     insert into items_spec
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -108,7 +108,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zb.pojo.ItemsSpec" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.zb.pojo.model.ItemsSpec" >
     update items_spec
     <set >
       <if test="itemId != null" >
@@ -138,7 +138,7 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zb.pojo.ItemsSpec" >
+  <update id="updateByPrimaryKey" parameterType="com.zb.pojo.model.ItemsSpec" >
     update items_spec
     set item_id = #{itemId,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.zb.mapper.ItemsMapper" >
-  <resultMap id="BaseResultMap" type="com.zb.pojo.Items" >
+  <resultMap id="BaseResultMap" type="com.zb.pojo.model.Items" >
     <constructor >
       <idArg column="id" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="item_name" jdbcType="VARCHAR" javaType="java.lang.String" />
@@ -13,7 +13,7 @@
       <arg column="updated_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
     </constructor>
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.zb.pojo.Items" >
+  <resultMap id="ResultMapWithBLOBs" type="com.zb.pojo.model.Items" >
     <constructor>
       <idArg column="id" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="item_name" jdbcType="VARCHAR" javaType="java.lang.String" />
@@ -44,7 +44,7 @@
     delete from items
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.zb.pojo.Items" >
+  <insert id="insert" parameterType="com.zb.pojo.model.Items" >
     insert into items (id, item_name, cat_id, 
       root_cat_id, sell_counts, on_off_status, 
       created_time, updated_time, content
@@ -54,7 +54,7 @@
       #{createdTime,jdbcType=TIMESTAMP}, #{updatedTime,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.zb.pojo.Items" >
+  <insert id="insertSelective" parameterType="com.zb.pojo.model.Items" >
     insert into items
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -115,7 +115,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zb.pojo.Items" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.zb.pojo.model.Items" >
     update items
     <set >
       <if test="itemName != null" >
@@ -145,7 +145,7 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zb.pojo.Items" >
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zb.pojo.model.Items" >
     update items
     set item_name = #{itemName,jdbcType=VARCHAR},
       cat_id = #{catId,jdbcType=INTEGER},
@@ -157,7 +157,7 @@
       content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zb.pojo.Items" >
+  <update id="updateByPrimaryKey" parameterType="com.zb.pojo.model.Items" >
     update items
     set item_name = #{itemName,jdbcType=VARCHAR},
       cat_id = #{catId,jdbcType=INTEGER},

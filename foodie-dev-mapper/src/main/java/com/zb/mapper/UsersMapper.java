@@ -1,6 +1,6 @@
 package com.zb.mapper;
 
-import com.zb.pojo.Users;
+import com.zb.pojo.model.Users;
 import org.apache.ibatis.annotations.Param;
 
 public interface UsersMapper {

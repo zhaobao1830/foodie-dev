@@ -1,9 +1,9 @@
 package com.zb.controller;
 
-import com.zb.pojo.Items;
-import com.zb.pojo.ItemsImg;
-import com.zb.pojo.ItemsParam;
-import com.zb.pojo.ItemsSpec;
+import com.zb.pojo.model.Items;
+import com.zb.pojo.model.ItemsImg;
+import com.zb.pojo.model.ItemsParam;
+import com.zb.pojo.model.ItemsSpec;
 import com.zb.pojo.vo.CommentLevelCountsVO;
 import com.zb.pojo.vo.ItemInfoVO;
 import com.zb.pojo.vo.ShopcartVO;
@@ -17,8 +17,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Api(value = "商品接口", tags = {"商品信息展示的相关接口"})

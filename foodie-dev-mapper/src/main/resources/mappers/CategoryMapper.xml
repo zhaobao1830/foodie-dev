@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.zb.mapper.CategoryMapper" >
-  <resultMap id="BaseResultMap" type="com.zb.pojo.Category" >
+  <resultMap id="BaseResultMap" type="com.zb.pojo.model.Category" >
     <constructor >
       <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
@@ -57,7 +57,7 @@
     delete from category
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.zb.pojo.Category" >
+  <insert id="insert" parameterType="com.zb.pojo.model.Category" >
     insert into category (id, name, type, 
       father_id, logo, slogan, 
       cat_image, bg_color)
@@ -65,7 +65,7 @@
       #{fatherId,jdbcType=INTEGER}, #{logo,jdbcType=VARCHAR}, #{slogan,jdbcType=VARCHAR}, 
       #{catImage,jdbcType=VARCHAR}, #{bgColor,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.zb.pojo.Category" >
+  <insert id="insertSelective" parameterType="com.zb.pojo.model.Category" >
     insert into category
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -120,7 +120,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zb.pojo.Category" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.zb.pojo.model.Category" >
     update category
     <set >
       <if test="name != null" >
@@ -147,7 +147,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zb.pojo.Category" >
+  <update id="updateByPrimaryKey" parameterType="com.zb.pojo.model.Category" >
     update category
     set name = #{name,jdbcType=VARCHAR},
       type = #{type,jdbcType=INTEGER},

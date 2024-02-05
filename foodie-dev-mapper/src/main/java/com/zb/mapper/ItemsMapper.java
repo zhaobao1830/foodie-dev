@@ -1,6 +1,6 @@
 package com.zb.mapper;
 
-import com.zb.pojo.Items;
+import com.zb.pojo.model.Items;
 
 public interface ItemsMapper {
     int deleteByPrimaryKey(String id);

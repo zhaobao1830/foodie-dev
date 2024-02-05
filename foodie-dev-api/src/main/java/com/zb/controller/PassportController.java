@@ -1,6 +1,6 @@
 package com.zb.controller;
 
-import com.zb.pojo.Users;
+import com.zb.pojo.model.Users;
 import com.zb.pojo.bo.UserBO;
 import com.zb.service.UserService;
 import com.zb.utils.CookieUtils;

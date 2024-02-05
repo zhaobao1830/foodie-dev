@@ -1,8 +1,7 @@
 package com.zb.service;
 
-import com.zb.pojo.Users;
+import com.zb.pojo.model.Users;
 import com.zb.pojo.bo.UserBO;
-import org.springframework.stereotype.Service;
 
 public interface UserService {
 

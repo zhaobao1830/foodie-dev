@@ -1,6 +1,6 @@
 package com.zb.mapper;
 
-import com.zb.pojo.OrderStatus;
+import com.zb.pojo.model.OrderStatus;
 
 public interface OrderStatusMapper {
     int deleteByPrimaryKey(String orderId);

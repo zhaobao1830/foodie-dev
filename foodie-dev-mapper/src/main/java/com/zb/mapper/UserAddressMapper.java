@@ -1,6 +1,6 @@
 package com.zb.mapper;
 
-import com.zb.pojo.UserAddress;
+import com.zb.pojo.model.UserAddress;
 
 import java.util.List;
 

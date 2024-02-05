@@ -1,6 +1,6 @@
 package com.zb.controller;
 
-import com.zb.pojo.UserAddress;
+import com.zb.pojo.model.UserAddress;
 import com.zb.pojo.bo.AddressBO;
 import com.zb.service.AddressService;
 import com.zb.utils.IMOOCJSONResult;

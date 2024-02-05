@@ -1,6 +1,6 @@
 package com.zb.mapper;
 
-import com.zb.pojo.ItemsSpec;
+import com.zb.pojo.model.ItemsSpec;
 
 import java.util.List;
 

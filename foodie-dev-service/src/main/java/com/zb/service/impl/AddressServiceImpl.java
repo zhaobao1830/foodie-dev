@@ -2,7 +2,7 @@ package com.zb.service.impl;
 
 import com.zb.enums.YesOrNo;
 import com.zb.mapper.UserAddressMapper;
-import com.zb.pojo.UserAddress;
+import com.zb.pojo.model.UserAddress;
 import com.zb.pojo.bo.AddressBO;
 import com.zb.service.AddressService;
 import org.n3r.idworker.Sid;

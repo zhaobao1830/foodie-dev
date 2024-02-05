@@ -1,7 +1,7 @@
 package com.zb.service.impl;
 
 import com.zb.mapper.CarouselMapper;
-import com.zb.pojo.Carousel;
+import com.zb.pojo.model.Carousel;
 import com.zb.service.CarouselService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
