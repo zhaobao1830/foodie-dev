@@ -1,4 +1,4 @@
-package com.zb.pojo.bo;
+package com.zb.pojo.dto;
 
 public class UserBO {
     // 添加从前端传递过来的属性

@@ -1,4 +1,4 @@
-package com.zb.pojo.bo;
+package com.zb.pojo.dto;
 
 /**
  * 用户新增或修改地址的BO

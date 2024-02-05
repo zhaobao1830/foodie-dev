@@ -1,7 +1,7 @@
 package com.zb.service;
 
 import com.zb.pojo.model.UserAddress;
-import com.zb.pojo.bo.AddressBO;
+import com.zb.pojo.dto.AddressBO;
 
 import java.util.List;
 

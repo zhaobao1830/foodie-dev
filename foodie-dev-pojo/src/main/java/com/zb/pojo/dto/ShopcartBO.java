@@ -1,4 +1,4 @@
-package com.zb.pojo.bo;
+package com.zb.pojo.dto;
 
 public class ShopcartBO {
     private String itemId;

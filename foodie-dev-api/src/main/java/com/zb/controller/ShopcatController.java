@@ -1,6 +1,6 @@
 package com.zb.controller;
 
-import com.zb.pojo.bo.ShopcartBO;
+import com.zb.pojo.dto.ShopcartBO;
 import com.zb.utils.IMOOCJSONResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

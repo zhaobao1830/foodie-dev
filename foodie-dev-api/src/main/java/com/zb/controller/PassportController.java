@@ -1,7 +1,7 @@
 package com.zb.controller;
 
 import com.zb.pojo.model.Users;
-import com.zb.pojo.bo.UserBO;
+import com.zb.pojo.dto.UserBO;
 import com.zb.service.UserService;
 import com.zb.utils.CookieUtils;
 import com.zb.utils.IMOOCJSONResult;

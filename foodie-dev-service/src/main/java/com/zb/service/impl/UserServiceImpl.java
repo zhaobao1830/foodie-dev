@@ -3,7 +3,7 @@ package com.zb.service.impl;
 import com.zb.mapper.UsersMapper;
 import com.zb.enums.Sex;
 import com.zb.pojo.model.Users;
-import com.zb.pojo.bo.UserBO;
+import com.zb.pojo.dto.UserBO;
 import com.zb.service.UserService;
 import com.zb.utils.DateUtil;
 import com.zb.utils.MD5Utils;

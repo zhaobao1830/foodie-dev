@@ -1,7 +1,7 @@
 package com.zb.service;
 
 import com.zb.pojo.model.Users;
-import com.zb.pojo.bo.UserBO;
+import com.zb.pojo.dto.UserBO;
 
 public interface UserService {
 
