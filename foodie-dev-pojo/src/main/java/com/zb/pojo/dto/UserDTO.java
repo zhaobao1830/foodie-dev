@@ -1,6 +1,6 @@
 package com.zb.pojo.dto;
 
-public class UserBO {
+public class UserDTO {
     // 添加从前端传递过来的属性
 
     private String username;

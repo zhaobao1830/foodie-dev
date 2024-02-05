@@ -3,7 +3,7 @@ package com.zb.service.impl;
 import com.zb.mapper.UsersMapper;
 import com.zb.enums.Sex;
 import com.zb.pojo.model.Users;
-import com.zb.pojo.dto.UserBO;
+import com.zb.pojo.dto.UserDTO;
 import com.zb.service.UserService;
 import com.zb.utils.DateUtil;
 import com.zb.utils.MD5Utils;
@@ -39,18 +39,18 @@ public class UserServiceImpl implements UserService {
     // @Transactional(propagation = Propagation.REQUIRED) 出错以后可以回滚
     @Transactional(propagation = Propagation.REQUIRED)
     @Override
-    public Users createUser(UserBO userBO) {
+    public Users createUser(UserDTO userDTO) {
         String userId = sid.nextShort();
          Users user = new Users();
         user.setId(userId);
-        user.setUsername(userBO.getUsername());
+        user.setUsername(userDTO.getUsername());
         try {
-            user.setPassword(MD5Utils.MD5EncodeUtf8(userBO.getPassword()));
+            user.setPassword(MD5Utils.MD5EncodeUtf8(userDTO.getPassword()));
         } catch (Exception e) {
             e.printStackTrace();
         }
         // 默认用户昵称等同于用户名
-        user.setNickname(userBO.getUsername());
+        user.setNickname(userDTO.getUsername());
         // 默认头像
         user.setFace(USER_FACE);
         // 默认生日

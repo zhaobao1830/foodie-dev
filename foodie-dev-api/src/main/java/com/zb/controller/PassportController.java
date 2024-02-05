@@ -1,7 +1,7 @@
 package com.zb.controller;
 
 import com.zb.pojo.model.Users;
-import com.zb.pojo.dto.UserBO;
+import com.zb.pojo.dto.UserDTO;
 import com.zb.service.UserService;
 import com.zb.utils.CookieUtils;
 import com.zb.utils.IMOOCJSONResult;
@@ -43,11 +43,11 @@ public class PassportController {
 
     @ApiOperation(value = "用户注册", notes = "用户注册", httpMethod = "POST")
     @RequestMapping(value = "/regist", method = RequestMethod.POST)
-    public IMOOCJSONResult regist(@RequestBody UserBO userBO) {
+    public IMOOCJSONResult regist(@RequestBody UserDTO userDTO) {
 
-        String username = userBO.getUsername();
-        String password = userBO.getPassword();
-        String confirmPwd = userBO.getConfirmPassword();
+        String username = userDTO.getUsername();
+        String password = userDTO.getPassword();
+        String confirmPwd = userDTO.getConfirmPassword();
 
         // 0、判断用户名和密码必须不为空
         if (StringUtils.isBlank(username) ||
@@ -70,18 +70,18 @@ public class PassportController {
             return IMOOCJSONResult.errorMsg("俩次密码不一致");
         }
         // 4、实现注册
-        userService.createUser(userBO);
+        userService.createUser(userDTO);
 
         return IMOOCJSONResult.ok();
     }
 
     @ApiOperation(value = "用户登录", notes = "用户登录", httpMethod = "POST")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public IMOOCJSONResult login(@RequestBody UserBO userBO,
+    public IMOOCJSONResult login(@RequestBody UserDTO userDTO,
                                  HttpServletRequest request,
                                  HttpServletResponse response) {
-        String username = userBO.getUsername();
-        String password = userBO.getPassword();
+        String username = userDTO.getUsername();
+        String password = userDTO.getPassword();
 
         // 0、判断用户名和密码必须不为空
         if (StringUtils.isBlank(username) ||
