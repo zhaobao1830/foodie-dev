@@ -1,6 +1,6 @@
 package com.zb.pojo.dto;
 
-public class ShopcartBO {
+public class ShopcartDTO {
     private String itemId;
     private String itemImgUrl;
     private String itemName;
@@ -76,7 +76,7 @@ public class ShopcartBO {
 
     @Override
     public String toString() {
-        return "ShopcartBO{" +
+        return "ShopcartDTO{" +
                 "itemId='" + itemId + '\'' +
                 ", itemImgUrl='" + itemImgUrl + '\'' +
                 ", itemName='" + itemName + '\'' +

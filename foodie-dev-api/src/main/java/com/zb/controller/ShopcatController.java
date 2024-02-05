@@ -1,6 +1,6 @@
 package com.zb.controller;
 
-import com.zb.pojo.dto.ShopcartBO;
+import com.zb.pojo.dto.ShopcartDTO;
 import com.zb.utils.IMOOCJSONResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -19,7 +19,7 @@ public class ShopcatController {
     @PostMapping("/add")
     public IMOOCJSONResult add(
             @RequestParam String userId,
-            @RequestBody ShopcartBO shopcartBO,
+            @RequestBody ShopcartDTO shopcartDTO,
             HttpServletRequest request,
             HttpServletResponse response
     ) {
@@ -28,7 +28,7 @@ public class ShopcatController {
             return IMOOCJSONResult.errorMsg("");
         }
 
-        System.out.println(shopcartBO);
+        System.out.println(shopcartDTO);
 
         // TODO 前端用户在登录的情况下，添加商品到购物车，会同时在后端同步购物车到redis缓存
 
