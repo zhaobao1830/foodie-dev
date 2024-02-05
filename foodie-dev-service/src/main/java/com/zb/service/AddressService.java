@@ -1,7 +1,7 @@
 package com.zb.service;
 
 import com.zb.pojo.model.UserAddress;
-import com.zb.pojo.dto.AddressBO;
+import com.zb.pojo.dto.AddressDTO;
 
 import java.util.List;
 
@@ -16,15 +16,15 @@ public interface AddressService {
 
     /**
      * 用户新增地址
-     * @param addressBO
+     * @param addressDTO
      */
-    public void addNewUserAddress(AddressBO addressBO);
+    public void addNewUserAddress(AddressDTO addressDTO);
 
     /**
      * 用户修改地址
-     * @param addressBO
+     * @param addressDTO
      */
-    public void updateUserAddress(AddressBO addressBO);
+    public void updateUserAddress(AddressDTO addressDTO);
 
     /**
      * 根据用户id和地址id，删除对应的用户地址信息

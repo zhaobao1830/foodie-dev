@@ -3,7 +3,7 @@ package com.zb.pojo.dto;
 /**
  * 用户新增或修改地址的BO
  */
-public class AddressBO {
+public class AddressDTO {
     private String addressId;
 
     private String userId;

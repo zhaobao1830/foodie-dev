@@ -3,7 +3,7 @@ package com.zb.service.impl;
 import com.zb.enums.YesOrNo;
 import com.zb.mapper.UserAddressMapper;
 import com.zb.pojo.model.UserAddress;
-import com.zb.pojo.dto.AddressBO;
+import com.zb.pojo.dto.AddressDTO;
 import com.zb.service.AddressService;
 import org.n3r.idworker.Sid;
 import org.springframework.beans.BeanUtils;
@@ -32,10 +32,10 @@ public class AddressServiceImpl implements AddressService {
 
     @Transactional(propagation = Propagation.REQUIRED)
     @Override
-    public void addNewUserAddress(AddressBO addressBO) {
+    public void addNewUserAddress(AddressDTO addressDTO) {
         // 1. 判断当前用户是否存在地址，如果没有，则新增为‘默认地址’
         int isDefault = 0;
-        List<UserAddress> userAddressList = this.queryAll(addressBO.getUserId());
+        List<UserAddress> userAddressList = this.queryAll(addressDTO.getUserId());
         if (userAddressList.isEmpty()) {
             isDefault = 1;
         }
@@ -45,8 +45,8 @@ public class AddressServiceImpl implements AddressService {
         // 2. 保存地址到数据库
         UserAddress userAddress = new UserAddress();
 
-        // 将addressBO里所有的属性值拷贝到userAddress中（浅拷贝）
-        BeanUtils.copyProperties(addressBO, userAddress);
+        // 将addressDTO里所有的属性值拷贝到userAddress中（浅拷贝）
+        BeanUtils.copyProperties(addressDTO, userAddress);
 
         userAddress.setId(addressId);
         userAddress.setIsDefault(isDefault);
@@ -58,11 +58,11 @@ public class AddressServiceImpl implements AddressService {
 
     @Transactional(propagation = Propagation.REQUIRED)
     @Override
-    public void updateUserAddress(AddressBO addressBO) {
-        String addressId = addressBO.getAddressId();
+    public void updateUserAddress(AddressDTO addressDTO) {
+        String addressId = addressDTO.getAddressId();
 
         UserAddress pendingAddress = new UserAddress();
-        BeanUtils.copyProperties(addressBO, pendingAddress);
+        BeanUtils.copyProperties(addressDTO, pendingAddress);
 
         pendingAddress.setId(addressId);
         pendingAddress.setUpdatedTime(new Date());

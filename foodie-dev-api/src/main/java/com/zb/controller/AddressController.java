@@ -1,7 +1,7 @@
 package com.zb.controller;
 
 import com.zb.pojo.model.UserAddress;
-import com.zb.pojo.dto.AddressBO;
+import com.zb.pojo.dto.AddressDTO;
 import com.zb.service.AddressService;
 import com.zb.utils.IMOOCJSONResult;
 import com.zb.utils.MobileEmailUtils;
@@ -42,30 +42,30 @@ public class AddressController {
 
     @ApiOperation(value = "用户新增地址", notes = "用户新增地址", httpMethod = "POST")
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public IMOOCJSONResult add(@RequestBody AddressBO addressBO) {
-        IMOOCJSONResult checkRes = checkAddress(addressBO);
+    public IMOOCJSONResult add(@RequestBody AddressDTO addressDTO) {
+        IMOOCJSONResult checkRes = checkAddress(addressDTO);
         if (checkRes.getStatus() != 200) {
             return checkRes;
         }
-        addressService.addNewUserAddress(addressBO);
+        addressService.addNewUserAddress(addressDTO);
 
         return IMOOCJSONResult.ok();
     }
 
     @ApiOperation(value = "用户修改地址", notes = "用户修改地址", httpMethod = "POST")
     @PostMapping("/update")
-    public IMOOCJSONResult update(@RequestBody AddressBO addressBO) {
+    public IMOOCJSONResult update(@RequestBody AddressDTO addressDTO) {
 
-        if (StringUtils.isBlank(addressBO.getAddressId())) {
+        if (StringUtils.isBlank(addressDTO.getAddressId())) {
             return IMOOCJSONResult.errorMsg("修改地址错误：addressId不能为空");
         }
 
-        IMOOCJSONResult checkRes = checkAddress(addressBO);
+        IMOOCJSONResult checkRes = checkAddress(addressDTO);
         if (checkRes.getStatus() != 200) {
             return checkRes;
         }
 
-        addressService.updateUserAddress(addressBO);
+        addressService.updateUserAddress(addressDTO);
 
         return IMOOCJSONResult.ok();
     }
@@ -84,8 +84,8 @@ public class AddressController {
         return IMOOCJSONResult.ok();
     }
 
-    private IMOOCJSONResult checkAddress(AddressBO addressBO) {
-        String receiver = addressBO.getReceiver();
+    private IMOOCJSONResult checkAddress(AddressDTO addressDTO) {
+        String receiver = addressDTO.getReceiver();
         if (StringUtils.isBlank(receiver)) {
             return IMOOCJSONResult.errorMsg("收货人不能为空");
         }
@@ -93,7 +93,7 @@ public class AddressController {
             return IMOOCJSONResult.errorMsg("收货人姓名不能太长");
         }
 
-        String mobile = addressBO.getMobile();
+        String mobile = addressDTO.getMobile();
         if (StringUtils.isBlank(mobile)) {
             return IMOOCJSONResult.errorMsg("收货人手机号不能为空");
         }
@@ -105,10 +105,10 @@ public class AddressController {
             return IMOOCJSONResult.errorMsg("收货人手机号格式不正确");
         }
 
-        String province = addressBO.getProvince();
-        String city = addressBO.getCity();
-        String district = addressBO.getDistrict();
-        String detail = addressBO.getDetail();
+        String province = addressDTO.getProvince();
+        String city = addressDTO.getCity();
+        String district = addressDTO.getDistrict();
+        String detail = addressDTO.getDetail();
         if (StringUtils.isBlank(province) ||
                 StringUtils.isBlank(city) ||
                 StringUtils.isBlank(district) ||
