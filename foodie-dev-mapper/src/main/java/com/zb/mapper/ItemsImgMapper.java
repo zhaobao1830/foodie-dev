@@ -18,4 +18,6 @@ public interface ItemsImgMapper {
     int updateByPrimaryKey(ItemsImg record);
 
     public List<ItemsImg> getItemsImg(String itemId);
+
+    ItemsImg selectOne(ItemsImg itemsImg);
 }

@@ -128,4 +128,11 @@
     from items_img
     where item_id = #{itemId}
   </select>
+  <select id="selectOne" resultMap="BaseResultMap" parameterType="map" >
+    select
+    <include refid="Base_Column_List" />
+    from items_img
+    where id = #{id,jdbcType=VARCHAR}
+    and is_main = #{id,jdbcType=INTEGER}
+  </select>
 </mapper>

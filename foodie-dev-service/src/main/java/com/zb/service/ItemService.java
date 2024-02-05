@@ -64,7 +64,7 @@ public interface ItemService {
      * @param pageSize
      * @return
      */
-    public PagedGridResult searhItemsByKeywords(String keywords, String sort,
+    public PagedGridResult searchItemsByKeywords(String keywords, String sort,
                                       Integer page, Integer pageSize);
 
     /**
@@ -75,7 +75,7 @@ public interface ItemService {
      * @param pageSize
      * @return
      */
-    public PagedGridResult searhItemsByCatId(Integer catId, String sort,
+    public PagedGridResult searchItemsByCatId(Integer catId, String sort,
                                       Integer page, Integer pageSize);
 
     /**
@@ -84,4 +84,25 @@ public interface ItemService {
      * @return
      */
     public List<ShopcartVO> queryItemsBySpecIds(String specIds);
+
+    /**
+     * 根据商品规格id获取规格对象的具体信息
+     * @param specId
+     * @return
+     */
+    public ItemsSpec queryItemSpecById(String specId);
+
+    /**
+     * 根据商品id获得商品图片主图url
+     * @param itemId
+     * @return
+     */
+    public String queryItemMainImgById(String itemId);
+
+    /**
+     * 减少库存
+     * @param specId 商品规格Id(也就是skuId)
+     * @param buyCounts 购买的数量
+     */
+    public void decreaseItemSpecStock(String specId, int buyCounts);
 }

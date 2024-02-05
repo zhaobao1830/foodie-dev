@@ -145,7 +145,7 @@ public class ItemsController extends BaseController{
             pageSize = PAGE_SIZE;
         }
 
-        PagedGridResult grid = itemService.searhItemsByKeywords(
+        PagedGridResult grid = itemService.searchItemsByKeywords(
                 keywords,
                 sort,
                 page,
@@ -178,7 +178,7 @@ public class ItemsController extends BaseController{
             pageSize = PAGE_SIZE;
         }
 
-        PagedGridResult grid = itemService.searhItemsByCatId(
+        PagedGridResult grid = itemService.searchItemsByCatId(
                 catId,
                 sort,
                 page,

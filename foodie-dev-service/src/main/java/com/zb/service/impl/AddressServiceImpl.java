@@ -73,7 +73,7 @@ public class AddressServiceImpl implements AddressService {
     @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public void deleteUserAddress(String userId, String addressId) {
-        userAddressMapper.deleteByUserIdAndaddressId(userId, addressId);
+        userAddressMapper.deleteByUserIdAndAddressId(userId, addressId);
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
@@ -96,5 +96,21 @@ public class AddressServiceImpl implements AddressService {
         defaultAddress.setUserId(userId);
         defaultAddress.setIsDefault(YesOrNo.YES.type);
         userAddressMapper.updateByPrimaryKeySelective(defaultAddress);
+    }
+
+    /**
+     * 通过用户id和地址Id获取用户地址
+     *
+     * @param userId
+     * @param addressId
+     * @return
+     */
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public UserAddress queryUserAddress(String userId, String addressId) {
+        UserAddress singleAddress = new UserAddress();
+        singleAddress.setId(addressId);
+        singleAddress.setUserId(userId);
+        return userAddressMapper.selectOne(singleAddress);
     }
 }

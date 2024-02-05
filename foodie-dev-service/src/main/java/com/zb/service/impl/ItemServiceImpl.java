@@ -2,6 +2,7 @@ package com.zb.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.zb.enums.YesOrNo;
 import com.zb.mapper.*;
 import com.zb.enums.CommentLevel;
 import com.zb.pojo.model.Items;
@@ -85,7 +86,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Transactional(propagation = Propagation.SUPPORTS)
-    Integer getCommentCounts(String itemId, Integer level) {
+    public Integer getCommentCounts(String itemId, Integer level) {
         Map<String, Object> map = new HashMap<>();
         map.put("itemId", itemId);
         map.put("level", level);
@@ -103,9 +104,9 @@ public class ItemServiceImpl implements ItemService {
         map.put("itemId", itemId);
         map.put("level", level);
 
-        /**
-         * page: 第几页
-         * pageSize: 每页显示条数
+        /*
+          page: 第几页
+          pageSize: 每页显示条数
          */
         PageHelper.startPage(page, pageSize);
 
@@ -120,7 +121,7 @@ public class ItemServiceImpl implements ItemService {
 
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
-    public PagedGridResult searhItemsByKeywords(String keywords, String sort, Integer page, Integer pageSize) {
+    public PagedGridResult searchItemsByKeywords(String keywords, String sort, Integer page, Integer pageSize) {
         Map<String, Object> map = new HashMap<>();
         map.put("keywords", keywords);
         map.put("sort", sort);
@@ -133,7 +134,7 @@ public class ItemServiceImpl implements ItemService {
 
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
-    public PagedGridResult searhItemsByCatId(Integer catId, String sort, Integer page, Integer pageSize) {
+    public PagedGridResult searchItemsByCatId(Integer catId, String sort, Integer page, Integer pageSize) {
         Map<String, Object> map = new HashMap<>();
         map.put("catId", catId);
         map.put("sort", sort);
@@ -147,11 +148,72 @@ public class ItemServiceImpl implements ItemService {
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
     public List<ShopcartVO> queryItemsBySpecIds(String specIds) {
-        String ids[] = specIds.split(",");
+        String[] ids = specIds.split(",");
         List<String> specIdsList = new ArrayList<>();
         Collections.addAll(specIdsList, ids);
         System.out.println(specIdsList);
         return itemsMapperCustom.queryItemsBySpecIds(specIdsList);
+    }
+
+    /**
+     * 根据商品规格id获取规格对象的具体信息
+     *
+     * @param specId
+     * @return
+     */
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public ItemsSpec queryItemSpecById(String specId) {
+        return itemsSpecMapper.selectByPrimaryKey(specId);
+    }
+
+    /**
+     * 根据商品id获得商品图片主图url
+     *
+     * @param itemId
+     * @return
+     */
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public String queryItemMainImgById(String itemId) {
+        ItemsImg itemsImg = new ItemsImg();
+        itemsImg.setItemId(itemId);
+        itemsImg.setIsMain(YesOrNo.YES.type);
+        ItemsImg result = itemsImgMapper.selectOne(itemsImg);
+        return result != null ? result.getUrl() : "";
+    }
+
+    /**
+     * 减少库存
+     *
+     * @param specId    商品规格Id(也就是skuId)
+     * @param buyCounts 购买的数量
+     */
+    @Transactional(propagation = Propagation.REQUIRED)
+    @Override
+    public void decreaseItemSpecStock(String specId, int buyCounts) {
+        // synchronized 不推荐使用，集群下无用，性能低下
+                // 锁数据库: 不推荐，导致数据库性能低下
+                // 分布式锁 zookeeper redis
+
+                // lockUtil.getLock(); -- 加锁
+
+                // 1. 查询库存
+        //        int stock = 10;
+
+                // 2. 判断库存，是否能够减少到0以下
+        //        if (stock - buyCounts < 0) {
+                // 提示用户库存不够
+        //            10 - 3 -3 - 5 = -1
+        //        }
+
+        // lockUtil.unLock(); -- 解锁
+
+
+        int result = itemsMapperCustom.decreaseItemSpecStock(specId, buyCounts);
+        if (result != 1) {
+            throw new RuntimeException("订单创建失败，原因：库存不足!");
+        }
     }
 
     private PagedGridResult setterPagedGrid(List<?> list, Integer page) {
