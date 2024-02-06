@@ -10,21 +10,8 @@ import java.util.List;
 import java.util.Map;
 
 public interface CategoryMapper extends BaseMapper<Category> {
-    int deleteByPrimaryKey(Integer id);
 
-    int insert(Category record);
+    List<CategoryVO> getSubCatList(Integer rootCatId);
 
-    int insertSelective(Category record);
-
-    Category selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(Category record);
-
-    int updateByPrimaryKey(Category record);
-
-//    List<Category> selectAllCategory(Integer type);
-
-    public List<CategoryVO> getSubCatList(Integer rootCatId);
-
-    public List<NewItemsVO> getSixNewItemsLazy(@Param("paramsMap") Map<String, Object> map);
+    List<NewItemsVO> getSixNewItemsLazy(@Param("paramsMap") Map<String, Object> map);
 }
