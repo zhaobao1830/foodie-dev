@@ -19,8 +19,6 @@ public class CarouselServiceImpl implements CarouselService {
     public List<Carousel> queryAll(Integer isShow) {
         QueryWrapper<Carousel> wrapper = new QueryWrapper<>();
         wrapper.lambda().eq(Carousel::getIsShow, isShow).orderByDesc(Carousel::getCreateTime);
-        List<Carousel> carouselList = carouselMapper.selectList(wrapper);
-//        List<Carousel> carouselList = carouselMapper.selectAllCarousel(isShow);
-        return carouselList;
+        return carouselMapper.selectList(wrapper);
     }
 }
