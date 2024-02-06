@@ -1,5 +1,6 @@
 package com.zb.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zb.mapper.CategoryMapper;
 import com.zb.pojo.model.Category;
 import com.zb.pojo.vo.CategoryVO;
@@ -23,8 +24,9 @@ public class CategoryServiceImpl implements CategoryService {
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
     public List<Category> queryAllRootLevelCat() {
-        List<Category> categoryList = categoryMapper.selectAllCategory(1);
-        return categoryList;
+        QueryWrapper<Category> wrapper = new QueryWrapper<>();
+        wrapper.lambda().eq(Category::getType, "1");
+        return categoryMapper.selectList(wrapper);
     }
 
     @Transactional(propagation = Propagation.SUPPORTS)
