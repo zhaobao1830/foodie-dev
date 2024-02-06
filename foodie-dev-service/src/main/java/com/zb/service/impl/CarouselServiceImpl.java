@@ -1,5 +1,6 @@
 package com.zb.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zb.mapper.CarouselMapper;
 import com.zb.pojo.model.Carousel;
 import com.zb.service.CarouselService;
@@ -16,7 +17,10 @@ public class CarouselServiceImpl implements CarouselService {
 
     @Override
     public List<Carousel> queryAll(Integer isShow) {
-        List<Carousel> carouselList = carouselMapper.selectAllCarousel(isShow);
+        QueryWrapper<Carousel> wrapper = new QueryWrapper<>();
+        wrapper.lambda().eq(Carousel::getIsShow, isShow).orderByDesc(Carousel::getCreateTime);
+        List<Carousel> carouselList = carouselMapper.selectList(wrapper);
+//        List<Carousel> carouselList = carouselMapper.selectAllCarousel(isShow);
         return carouselList;
     }
 }
