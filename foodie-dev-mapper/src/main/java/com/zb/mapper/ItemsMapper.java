@@ -1,19 +1,8 @@
 package com.zb.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.zb.pojo.model.Items;
 
-public interface ItemsMapper {
-    int deleteByPrimaryKey(String id);
+public interface ItemsMapper extends BaseMapper<Items> {
 
-    int insert(Items record);
-
-    int insertSelective(Items record);
-
-    Items selectByPrimaryKey(String id);
-
-    int updateByPrimaryKeySelective(Items record);
-
-    int updateByPrimaryKeyWithBLOBs(Items record);
-
-    int updateByPrimaryKey(Items record);
 }

@@ -1,5 +1,6 @@
 package com.zb.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.zb.enums.YesOrNo;
@@ -47,25 +48,31 @@ public class ItemServiceImpl implements ItemService {
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
     public Items queryItemById(String itemId) {
-        return itemsMapper.selectByPrimaryKey(itemId);
+        return itemsMapper.selectById(itemId);
     }
 
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
     public List<ItemsImg> queryItemImgList(String itemId) {
-        return itemsImgMapper.getItemsImg(itemId);
+        QueryWrapper<ItemsImg> wrapper = new QueryWrapper<>();
+        wrapper.lambda().eq(ItemsImg::getItemId, itemId);
+        return itemsImgMapper.selectList(wrapper);
     }
 
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
     public List<ItemsSpec> queryItemSpecList(String itemId) {
-        return itemsSpecMapper.getItemsSpec(itemId);
+        QueryWrapper<ItemsSpec> wrapper = new QueryWrapper<>();
+        wrapper.eq("item_id", itemId);
+        return itemsSpecMapper.selectList(wrapper);
     }
 
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
     public ItemsParam queryItemParam(String itemId) {
-        return itemsParamMapper.selectByItemId(itemId);
+        QueryWrapper<ItemsParam> wrapper = new QueryWrapper<>();
+        wrapper.lambda().eq(ItemsParam::getItemId, itemId);
+        return itemsParamMapper.selectOne(wrapper);
     }
 
     @Transactional(propagation = Propagation.SUPPORTS)
@@ -157,29 +164,26 @@ public class ItemServiceImpl implements ItemService {
 
     /**
      * 根据商品规格id获取规格对象的具体信息
-     *
-     * @param specId
-     * @return
+     * @param specId 商品规格id
+     * @return 对应商品的规格信息
      */
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
     public ItemsSpec queryItemSpecById(String specId) {
-        return itemsSpecMapper.selectByPrimaryKey(specId);
+        return itemsSpecMapper.selectById(specId);
     }
 
     /**
      * 根据商品id获得商品图片主图url
-     *
-     * @param itemId
-     * @return
+     * @param itemId 商品ID
+     * @return 对应商品图片主图url
      */
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
     public String queryItemMainImgById(String itemId) {
-        ItemsImg itemsImg = new ItemsImg();
-        itemsImg.setItemId(itemId);
-        itemsImg.setIsMain(YesOrNo.YES.type);
-        ItemsImg result = itemsImgMapper.selectOne(itemsImg);
+        QueryWrapper<ItemsImg> wrapper = new QueryWrapper<>();
+        wrapper.lambda().eq(ItemsImg::getItemId, itemId).eq(ItemsImg::getIsMain, YesOrNo.YES.type);
+        ItemsImg result = itemsImgMapper.selectOne(wrapper);
         return result != null ? result.getUrl() : "";
     }
 

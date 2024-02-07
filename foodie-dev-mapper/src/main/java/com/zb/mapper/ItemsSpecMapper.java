@@ -1,21 +1,8 @@
 package com.zb.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.zb.pojo.model.ItemsSpec;
 
-import java.util.List;
+public interface ItemsSpecMapper extends BaseMapper<ItemsSpec> {
 
-public interface ItemsSpecMapper {
-    int deleteByPrimaryKey(String id);
-
-    int insert(ItemsSpec record);
-
-    int insertSelective(ItemsSpec record);
-
-    ItemsSpec selectByPrimaryKey(String id);
-
-    int updateByPrimaryKeySelective(ItemsSpec record);
-
-    int updateByPrimaryKey(ItemsSpec record);
-
-    public List<ItemsSpec> getItemsSpec(String itemId);
 }
