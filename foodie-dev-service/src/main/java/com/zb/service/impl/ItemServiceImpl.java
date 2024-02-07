@@ -6,10 +6,7 @@ import com.github.pagehelper.PageInfo;
 import com.zb.enums.YesOrNo;
 import com.zb.mapper.*;
 import com.zb.enums.CommentLevel;
-import com.zb.pojo.model.Items;
-import com.zb.pojo.model.ItemsImg;
-import com.zb.pojo.model.ItemsParam;
-import com.zb.pojo.model.ItemsSpec;
+import com.zb.pojo.model.*;
 import com.zb.pojo.vo.CommentLevelCountsVO;
 import com.zb.pojo.vo.ItemCommentVO;
 import com.zb.pojo.vo.SearchItemsVO;
@@ -78,9 +75,9 @@ public class ItemServiceImpl implements ItemService {
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
     public CommentLevelCountsVO queryCommentCounts(String itemId) {
-        Integer goodCounts = getCommentCounts(itemId, CommentLevel.GOOD.type);
-        Integer normalCounts = getCommentCounts(itemId, CommentLevel.NORMAL.type);
-        Integer badCounts = getCommentCounts(itemId, CommentLevel.BAD.type);
+        Integer goodCounts = getCommentCounts(itemId, CommentLevel.GOOD.type).intValue();
+        Integer normalCounts = getCommentCounts(itemId, CommentLevel.NORMAL.type).intValue();
+        Integer badCounts = getCommentCounts(itemId, CommentLevel.BAD.type).intValue();
         Integer totalCounts = goodCounts + normalCounts + badCounts;
 
         CommentLevelCountsVO countsVO = new CommentLevelCountsVO();
@@ -93,11 +90,13 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Transactional(propagation = Propagation.SUPPORTS)
-    public Integer getCommentCounts(String itemId, Integer level) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("itemId", itemId);
-        map.put("level", level);
-        return itemsCommentsMapper.selectCount(map);
+    public Long getCommentCounts(String itemId, Integer level) {
+//        Map<String, Object> map = new HashMap<>();
+//        map.put("itemId", itemId);
+//        map.put("level", level);
+        QueryWrapper<ItemsComments> wrapper = new QueryWrapper<>();
+        wrapper.lambda().eq(ItemsComments::getItemId, itemId).eq(ItemsComments::getCommentLevel, level);
+        return itemsCommentsMapper.selectCount(wrapper);
     }
 
     @Transactional(propagation = Propagation.SUPPORTS)
