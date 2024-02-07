@@ -13,96 +13,94 @@ import java.util.List;
 public interface ItemService {
     /**
      * 根据商品ID查询详情
-     * @param itemId
-     * @return
+     * @param itemId 商品ID
+     * @return 获取对应商品详情信息
      */
-    public Items queryItemById(String itemId);
+    Items queryItemById(String itemId);
 
     /**
      * 根据商品id查询商品图片列表
-     * @param itemId
-     * @return
+     * @param itemId 商品ID
+     * @return 对应商品图片列表
      */
-    public List<ItemsImg> queryItemImgList(String itemId);
+    List<ItemsImg> queryItemImgList(String itemId);
 
     /**
      * 根据商品id查询商品规格
-     * @param itemId
-     * @return
+     * @param itemId 商品ID
+     * @return 对应商品规格
      */
-    public List<ItemsSpec> queryItemSpecList(String itemId);
+    List<ItemsSpec> queryItemSpecList(String itemId);
 
     /**
      * 根据商品id查询商品参数
-     * @param itemId
-     * @return
+     * @param itemId 商品ID
+     * @return 对应商品参数
      */
-    public ItemsParam queryItemParam(String itemId);
+    ItemsParam queryItemParam(String itemId);
 
     /**
      * 根据商品id查询商品的评价等级数量
-     * @param itemId
+     * @param itemId 商品ID
      */
-    public CommentLevelCountsVO queryCommentCounts(String itemId);
-
+    CommentLevelCountsVO queryCommentCounts(String itemId);
 
     /**
      * 根据商品id查询商品的评价（分页）
-     * @param itemId
-     * @param level
-     * @return
+     * @param itemId 商品ID
+     * @param level 评价等级
+     * @return 对应商品评价（带分页）
      */
-    public PagedGridResult queryPagedComments(String itemId, Integer level,
+     PagedGridResult queryPagedComments(String itemId, Integer level,
                                               Integer page, Integer pageSize);
-
 
     /**
      * 搜索商品列表
-     * @param keywords
-     * @param sort
-     * @param page
-     * @param pageSize
-     * @return
+     * @param keywords 关键词
+     * @param sort 排序
+     * @param page 当前页页码
+     * @param pageSize 每页条数
+     * @return 对应商品列表
      */
-    public PagedGridResult searchItemsByKeywords(String keywords, String sort,
+    PagedGridResult searchItemsByKeywords(String keywords, String sort,
                                       Integer page, Integer pageSize);
 
     /**
      * 根据分类id搜索商品列表
-     * @param catId
-     * @param sort
-     * @param page
-     * @param pageSize
-     * @return
+     * @param catId 三级分类id
+     * @param sort 排序
+     * @param page 当前页页码
+     * @param pageSize 每页条数
+     * @return 对应商品列表
      */
-    public PagedGridResult searchItemsByCatId(Integer catId, String sort,
+    PagedGridResult searchItemsByCatId(Integer catId, String sort,
                                       Integer page, Integer pageSize);
 
     /**
      * 根据规格ids查询最新的购物车中商品数据（用于刷新渲染购物车中的商品数据）
-     * @param specIds
-     * @return
+     * @param specIds 商品规格ids
+     * @return 对应商品数据
      */
-    public List<ShopcartVO> queryItemsBySpecIds(String specIds);
+    List<ShopcartVO> queryItemsBySpecIds(String specIds);
 
     /**
      * 根据商品规格id获取规格对象的具体信息
-     * @param specId
-     * @return
+     * @param specId 商品规格id
+     * @return 对应商品的规格信息
      */
-    public ItemsSpec queryItemSpecById(String specId);
+    ItemsSpec queryItemSpecById(String specId);
 
     /**
      * 根据商品id获得商品图片主图url
-     * @param itemId
-     * @return
+     * @param itemId 商品ID
+     * @return 对应商品图片主图url
      */
-    public String queryItemMainImgById(String itemId);
+    String queryItemMainImgById(String itemId);
 
     /**
      * 减少库存
      * @param specId 商品规格Id(也就是skuId)
      * @param buyCounts 购买的数量
      */
-    public void decreaseItemSpecStock(String specId, int buyCounts);
+    void decreaseItemSpecStock(String specId, int buyCounts);
 }
