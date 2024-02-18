@@ -15,4 +15,25 @@
       <arg column="updated_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
     </constructor>
   </resultMap>
+
+  <select id="queryItemComments" resultType="com.zb.pojo.vo.ItemCommentVO">
+    SELECT
+    ic.comment_level as commentLevel,
+    ic.content as content,
+    ic.sepc_name as specName,
+    ic.created_time as createdTime,
+    u.face as userFace,
+    u.nickname as nickname
+    FROM
+    items_comments ic
+    LEFT JOIN
+    users u
+    ON
+    ic.user_id = u.id
+    WHERE
+    ic.item_id = #{itemId}
+    <if test=" level != null and level != '' ">
+      AND ic.comment_level = #{level}
+    </if>
+  </select>
 </mapper>

@@ -1,6 +1,8 @@
 package com.zb.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.zb.enums.YesOrNo;
@@ -102,27 +104,28 @@ public class ItemServiceImpl implements ItemService {
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
     public PagedGridResult queryPagedComments(String itemId,
-                                              Integer level,
-                                              Integer page,
-                                              Integer pageSize) {
+                                    Integer level,
+                                    Integer page,
+                                    Integer pageSize) {
 
-        Map<String, Object> map = new HashMap<>();
-        map.put("itemId", itemId);
-        map.put("level", level);
-
-        /*
-          page: 第几页
-          pageSize: 每页显示条数
-         */
-        PageHelper.startPage(page, pageSize);
-
-        List<ItemCommentVO> list = itemsMapperCustom.queryItemComments(map);
-
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<ItemsComments> page1 = new Page<>(page, pageSize);
+        IPage<ItemCommentVO> iPage= itemsCommentsMapper.queryItemComments(page1, itemId, level);
+        List<ItemCommentVO> list = iPage.getRecords();
         for (ItemCommentVO vo : list) {
             vo.setNickname(DesensitizationUtil.commonDisplay(vo.getNickname()));
         }
+        return setterPagedGrid(iPage.getRecords(), page);
+//        Map<String, Object> map = new HashMap<>();
+//        map.put("itemId", itemId);
+//        map.put("level", level);
+        //        for (ItemCommentVO vo : iPage.getRecords()) {
+//            vo.setNickname(DesensitizationUtil.commonDisplay(vo.getNickname()));
+//        }
 
-        return setterPagedGrid(list, page);
+//        com.baomidou.mybatisplus.extension.plugins.pagination.Page<ItemsComments> page1 = new Page<>(page, pageSize);
+//        QueryWrapper<ItemsComments> queryWrapper = new QueryWrapper<>();
+//        queryWrapper.lambda().eq(ItemsComments::getItemId, itemId).eq(ItemsComments::getCommentLevel, level);
+//        return itemsCommentsMapper.selectPage(page1, queryWrapper);
     }
 
     @Transactional(propagation = Propagation.SUPPORTS)

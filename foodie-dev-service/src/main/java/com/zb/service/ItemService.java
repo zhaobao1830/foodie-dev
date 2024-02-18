@@ -1,10 +1,9 @@
 package com.zb.service;
 
-import com.zb.pojo.model.Items;
-import com.zb.pojo.model.ItemsImg;
-import com.zb.pojo.model.ItemsParam;
-import com.zb.pojo.model.ItemsSpec;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.zb.pojo.model.*;
 import com.zb.pojo.vo.CommentLevelCountsVO;
+import com.zb.pojo.vo.ItemCommentVO;
 import com.zb.pojo.vo.ShopcartVO;
 import com.zb.utils.PagedGridResult;
 
@@ -51,8 +50,8 @@ public interface ItemService {
      * @param level 评价等级
      * @return 对应商品评价（带分页）
      */
-     PagedGridResult queryPagedComments(String itemId, Integer level,
-                                              Integer page, Integer pageSize);
+    PagedGridResult queryPagedComments(String itemId, Integer level,
+                                             Integer page, Integer pageSize);
 
     /**
      * 搜索商品列表
