@@ -216,6 +216,7 @@ public class ItemServiceImpl implements ItemService {
         }
     }
 
+    // 封装分页方法
     private PagedGridResult setterPagedGrid(List<?> list, Integer page) {
         PageInfo<?> pageList = new PageInfo<>(list);
         PagedGridResult grid = new PagedGridResult();
