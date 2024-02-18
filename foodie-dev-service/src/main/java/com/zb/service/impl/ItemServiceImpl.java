@@ -109,7 +109,7 @@ public class ItemServiceImpl implements ItemService {
                                     Integer pageSize) {
 
         com.baomidou.mybatisplus.extension.plugins.pagination.Page<ItemsComments> page1 = new Page<>(page, pageSize);
-        IPage<ItemCommentVO> iPage= itemsCommentsMapper.queryItemComments(page1, itemId, level);
+        IPage<ItemCommentVO> iPage= itemsMapperCustom.queryItemComments(page1, itemId, level);
         List<ItemCommentVO> list = iPage.getRecords();
         for (ItemCommentVO vo : list) {
             vo.setNickname(DesensitizationUtil.commonDisplay(vo.getNickname()));
