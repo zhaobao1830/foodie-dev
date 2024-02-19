@@ -6,35 +6,52 @@ import java.util.List;
  *
  * @Description: 用来返回分页Grid的数据格式
  */
-public class PagedGridResult {
+public class PagedGridResult<T> {
 	
-	private int page;			// 当前页数
-	private int total;			// 总页数	
-	private long records;		// 总记录数
-	private List<?> rows;		// 每行显示的内容
+	private long current;	// 当前页
+	private long pages;		// 总页数
+	private long total;		// 总记录数
+	private List<?> rows;	// 每页查询的结果集
 
-	public int getPage() {
-		return page;
+	public long getCurrent() {
+		return current;
 	}
-	public void setPage(int page) {
-		this.page = page;
+
+	public void setCurrent(long current) {
+		this.current = current;
 	}
-	public int getTotal() {
+
+	public long getPages() {
+		return pages;
+	}
+
+	public void setPages(long pages) {
+		this.pages = pages;
+	}
+
+	public long getTotal() {
 		return total;
 	}
-	public void setTotal(int total) {
+
+	public void setTotal(long total) {
 		this.total = total;
 	}
-	public long getRecords() {
-		return records;
-	}
-	public void setRecords(long records) {
-		this.records = records;
-	}
+
 	public List<?> getRows() {
 		return rows;
 	}
+
 	public void setRows(List<?> rows) {
+		this.rows = rows;
+	}
+
+	public PagedGridResult() {
+	}
+
+	public PagedGridResult(long current, long pages, long total, List<?> rows) {
+		this.current = current;
+		this.pages = pages;
+		this.total = total;
 		this.rows = rows;
 	}
 }
