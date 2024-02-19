@@ -12,33 +12,33 @@ public interface AddressService {
      * @param userId
      * @return
      */
-    public List<UserAddress> queryAll(String userId);
+    List<UserAddress> queryAll(String userId);
 
     /**
      * 用户新增地址
      * @param addressDTO
      */
-    public void addNewUserAddress(AddressDTO addressDTO);
+    void addNewUserAddress(AddressDTO addressDTO);
 
     /**
      * 用户修改地址
      * @param addressDTO
      */
-    public void updateUserAddress(AddressDTO addressDTO);
+    void updateUserAddress(AddressDTO addressDTO);
 
     /**
      * 根据用户id和地址id，删除对应的用户地址信息
      * @param userId
      * @param addressId
      */
-    public void deleteUserAddress(String userId, String addressId);
+    void deleteUserAddress(String userId, String addressId);
 
     /**
      * 修改默认地址
      * @param userId
      * @param addressId
      */
-    public void updateUserAddressToBeDefault(String userId, String addressId);
+    void updateUserAddressToBeDefault(String userId, String addressId);
 
     /**
      * 通过用户id和地址Id获取用户地址
@@ -46,5 +46,5 @@ public interface AddressService {
      * @param addressId
      * @return
      */
-    public UserAddress queryUserAddress(String userId, String addressId);
+    UserAddress queryUserAddress(String userId, String addressId);
 }

@@ -1,5 +1,6 @@
 package com.zb.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zb.enums.YesOrNo;
 import com.zb.mapper.UserAddressMapper;
 import com.zb.pojo.model.UserAddress;
@@ -27,7 +28,9 @@ public class AddressServiceImpl implements AddressService {
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
     public List<UserAddress> queryAll(String userId) {
-        return userAddressMapper.selectByUserId(userId);
+        QueryWrapper<UserAddress> wrapper = new QueryWrapper<>();
+        wrapper.lambda().eq(UserAddress::getUserId, userId);
+        return userAddressMapper.selectList(wrapper);
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
