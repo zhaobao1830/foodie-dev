@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 @Api(value = "购物车接口", tags = {"用于注册登录的相关接口"})
 @RestController
 @RequestMapping("shopcart")
-public class ShopcatController {
+public class ShopCatController {
 
     @ApiOperation(value = "添加商品到购物车", notes = "添加商品到购物车", httpMethod = "POST")
     @PostMapping("/add")
