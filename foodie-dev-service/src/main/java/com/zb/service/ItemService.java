@@ -50,7 +50,7 @@ public interface ItemService {
      * @param level 评价等级
      * @return 对应商品评价（带分页）
      */
-    PagedGridResult queryPagedComments(String itemId, Integer level,
+    PagedGridResult<ItemCommentVO> queryPagedComments(String itemId, Integer level,
                                              Integer page, Integer pageSize);
 
     /**
@@ -61,19 +61,19 @@ public interface ItemService {
      * @param pageSize 每页条数
      * @return 对应商品列表
      */
-    PagedGridResult searchItemsByKeywords(String keywords, String sort,
-                                      Integer page, Integer pageSize);
-
-    /**
-     * 根据分类id搜索商品列表
-     * @param catId 三级分类id
-     * @param sort 排序
-     * @param page 当前页页码
-     * @param pageSize 每页条数
-     * @return 对应商品列表
-     */
-    PagedGridResult searchItemsByCatId(Integer catId, String sort,
-                                      Integer page, Integer pageSize);
+//    PagedGridResult searchItemsByKeywords(String keywords, String sort,
+//                                      Integer page, Integer pageSize);
+//
+//    /**
+//     * 根据分类id搜索商品列表
+//     * @param catId 三级分类id
+//     * @param sort 排序
+//     * @param page 当前页页码
+//     * @param pageSize 每页条数
+//     * @return 对应商品列表
+//     */
+//    PagedGridResult searchItemsByCatId(Integer catId, String sort,
+//                                      Integer page, Integer pageSize);
 
     /**
      * 根据规格ids查询最新的购物车中商品数据（用于刷新渲染购物车中的商品数据）

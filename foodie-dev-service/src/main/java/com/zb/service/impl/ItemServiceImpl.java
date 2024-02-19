@@ -3,8 +3,6 @@ package com.zb.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.zb.enums.YesOrNo;
 import com.zb.mapper.*;
 import com.zb.enums.CommentLevel;
@@ -15,6 +13,7 @@ import com.zb.pojo.vo.SearchItemsVO;
 import com.zb.pojo.vo.ShopcartVO;
 import com.zb.service.ItemService;
 import com.zb.utils.DesensitizationUtil;
+import com.zb.utils.PageUtil;
 import com.zb.utils.PagedGridResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -93,9 +92,6 @@ public class ItemServiceImpl implements ItemService {
 
     @Transactional(propagation = Propagation.SUPPORTS)
     public Long getCommentCounts(String itemId, Integer level) {
-//        Map<String, Object> map = new HashMap<>();
-//        map.put("itemId", itemId);
-//        map.put("level", level);
         QueryWrapper<ItemsComments> wrapper = new QueryWrapper<>();
         wrapper.lambda().eq(ItemsComments::getItemId, itemId).eq(ItemsComments::getCommentLevel, level);
         return itemsCommentsMapper.selectCount(wrapper);
@@ -103,56 +99,50 @@ public class ItemServiceImpl implements ItemService {
 
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
-    public PagedGridResult queryPagedComments(String itemId,
+    public PagedGridResult<ItemCommentVO> queryPagedComments(String itemId,
                                     Integer level,
                                     Integer page,
                                     Integer pageSize) {
 
-        com.baomidou.mybatisplus.extension.plugins.pagination.Page<ItemsComments> page1 = new Page<>(page, pageSize);
+        // 创建page对象
+        Page<ItemsComments> page1 = new Page<>(page, pageSize);
+        // 查询数据的sql和不分页的一样，只需要传入page对象就行，sql里不用分页的参数
         IPage<ItemCommentVO> iPage= itemsMapperCustom.queryItemComments(page1, itemId, level);
+        // 对查询出的分页对象里的列表数据进行二次处理
         List<ItemCommentVO> list = iPage.getRecords();
         for (ItemCommentVO vo : list) {
+            // 对Nickname字段进行脱敏
             vo.setNickname(DesensitizationUtil.commonDisplay(vo.getNickname()));
         }
-        return setterPagedGrid(iPage.getRecords(), page);
+        // 对分页数据进行加工处理
+        return PageUtil.build(iPage);
+    }
+
+//    @Transactional(propagation = Propagation.SUPPORTS)
+//    @Override
+//    public PagedGridResult searchItemsByKeywords(String keywords, String sort, Integer page, Integer pageSize) {
 //        Map<String, Object> map = new HashMap<>();
-//        map.put("itemId", itemId);
-//        map.put("level", level);
-        //        for (ItemCommentVO vo : iPage.getRecords()) {
-//            vo.setNickname(DesensitizationUtil.commonDisplay(vo.getNickname()));
-//        }
-
-//        com.baomidou.mybatisplus.extension.plugins.pagination.Page<ItemsComments> page1 = new Page<>(page, pageSize);
-//        QueryWrapper<ItemsComments> queryWrapper = new QueryWrapper<>();
-//        queryWrapper.lambda().eq(ItemsComments::getItemId, itemId).eq(ItemsComments::getCommentLevel, level);
-//        return itemsCommentsMapper.selectPage(page1, queryWrapper);
-    }
-
-    @Transactional(propagation = Propagation.SUPPORTS)
-    @Override
-    public PagedGridResult searchItemsByKeywords(String keywords, String sort, Integer page, Integer pageSize) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("keywords", keywords);
-        map.put("sort", sort);
-
-        PageHelper.startPage(page, pageSize);
-        List<SearchItemsVO> list = itemsMapperCustom.searchItemsByKeywords(map);
-
-        return setterPagedGrid(list, page);
-    }
-
-    @Transactional(propagation = Propagation.SUPPORTS)
-    @Override
-    public PagedGridResult searchItemsByCatId(Integer catId, String sort, Integer page, Integer pageSize) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("catId", catId);
-        map.put("sort", sort);
-
-        PageHelper.startPage(page, pageSize);
-        List<SearchItemsVO> list = itemsMapperCustom.searchItemsByCatId(map);
-
-        return setterPagedGrid(list, page);
-    }
+//        map.put("keywords", keywords);
+//        map.put("sort", sort);
+//
+//        PageHelper.startPage(page, pageSize);
+//        List<SearchItemsVO> list = itemsMapperCustom.searchItemsByKeywords(map);
+//
+//        return setterPagedGrid(list, page);
+//    }
+//
+//    @Transactional(propagation = Propagation.SUPPORTS)
+//    @Override
+//    public PagedGridResult searchItemsByCatId(Integer catId, String sort, Integer page, Integer pageSize) {
+//        Map<String, Object> map = new HashMap<>();
+//        map.put("catId", catId);
+//        map.put("sort", sort);
+//
+//        PageHelper.startPage(page, pageSize);
+//        List<SearchItemsVO> list = itemsMapperCustom.searchItemsByCatId(map);
+//
+//        return setterPagedGrid(list, page);
+//    }
 
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
@@ -222,14 +212,14 @@ public class ItemServiceImpl implements ItemService {
         }
     }
 
-    private PagedGridResult setterPagedGrid(List<?> list, Integer page) {
-        PageInfo<?> pageList = new PageInfo<>(list);
-        PagedGridResult grid = new PagedGridResult();
-        grid.setPage(page);
-        grid.setRows(list);
-        grid.setTotal(pageList.getPages());
-        grid.setRecords(pageList.getTotal());
-        return grid;
-    }
+//    private PagedGridResult setterPagedGrid(List<?> list, Integer page) {
+//        PageInfo<?> pageList = new PageInfo<>(list);
+//        PagedGridResult grid = new PagedGridResult();
+//        grid.setPage(page);
+//        grid.setRows(list);
+//        grid.setTotal(pageList.getPages());
+//        grid.setRecords(pageList.getTotal());
+//        return grid;
+//    }
 }
 
