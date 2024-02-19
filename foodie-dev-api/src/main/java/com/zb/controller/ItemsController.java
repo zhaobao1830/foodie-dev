@@ -22,30 +22,6 @@ public class ItemsController extends BaseController{
     @Autowired
     private ItemService itemService;
 
-    // restful 接口
-//    @ApiOperation(value = "查询商品详情", notes = "查询商品详情", httpMethod = "GET")
-//    @RequestMapping(value = "/info/{itemId}", method = RequestMethod.GET)
-//    public IMOOCJSONResult info(
-//            @ApiParam(name = "/itemId", value = "商品id", required = true)
-//            @PathVariable String itemId) {
-//        if (StringUtils.isBlank(itemId)) {
-//            return IMOOCJSONResult.errorMap("商品id为空");
-//        }
-//
-//        Items items = itemService.queryItemById(itemId);
-//        List<ItemsImg> itemImgList = itemService.queryItemImgList(itemId);
-//        List<ItemsSpec> itemsSpecList = itemService.queryItemSpecList(itemId);
-//        ItemsParam itemsParam = itemService.queryItemParam(itemId);
-//
-//        ItemInfoVO itemInfoVO = new ItemInfoVO();
-//        itemInfoVO.setItem(items);
-//        itemInfoVO.setItemImgList(itemImgList);
-//        itemInfoVO.setItemSpecList(itemsSpecList);
-//        itemInfoVO.setItemParams(itemsParam);
-//
-//        return IMOOCJSONResult.ok(itemInfoVO);
-//    }
-
     @ApiOperation(value = "查询商品详情", notes = "查询商品详情", httpMethod = "GET")
     @RequestMapping(value = "/info", method = RequestMethod.GET)
     public IMOOCJSONResult info(
@@ -91,21 +67,13 @@ public class ItemsController extends BaseController{
             @RequestParam String itemId,
             @ApiParam(name = "level", value = "评价等级")
             @RequestParam Integer level,
-            @ApiParam(name = "page", value = "查询下一页的第几页")
+            @ApiParam(name = "page", value = "查询下一页的第几页", required = true)
             @RequestParam(defaultValue = "1") Integer page,
-            @ApiParam(name = "pageSize", value = "分页的每一页显示的条数")
+            @ApiParam(name = "pageSize", value = "分页的每一页显示的条数", required = true)
             @RequestParam(defaultValue = "10") Integer pageSize
     ){
         if (StringUtils.isBlank(itemId)) {
             return IMOOCJSONResult.errorMsg(null);
-        }
-
-        if (page == null) {
-            page = 1;
-        }
-
-        if (pageSize == null) {
-            pageSize = COMMON_PAGE_SIZE;
         }
 
         PagedGridResult<ItemCommentVO> grid = itemService.queryPagedComments(itemId,
@@ -123,21 +91,13 @@ public class ItemsController extends BaseController{
             @RequestParam String keywords,
             @ApiParam(name = "sort", value = "排序")
             @RequestParam String sort,
-            @ApiParam(name = "page", value = "查询下一页的第几页")
+            @ApiParam(name = "page", value = "查询下一页的第几页", required = true)
             @RequestParam(defaultValue = "1") Integer page,
-            @ApiParam(name = "pageSize", value = "分页的每一页显示的条数")
+            @ApiParam(name = "pageSize", value = "分页的每一页显示的条数", required = true)
             @RequestParam(defaultValue = "10") Integer pageSize
     ) {
         if (StringUtils.isBlank(keywords)) {
             return IMOOCJSONResult.errorMsg(null);
-        }
-
-        if (page == null) {
-            page = 1;
-        }
-
-        if (pageSize == null) {
-            pageSize = PAGE_SIZE;
         }
 
         PagedGridResult<SearchItemsVO> grid = itemService.searchItemsByKeywords(
@@ -156,21 +116,13 @@ public class ItemsController extends BaseController{
             @RequestParam Integer catId,
             @ApiParam(name = "sort", value = "排序")
             @RequestParam String sort,
-            @ApiParam(name = "page", value = "查询下一页的第几页")
+            @ApiParam(name = "page", value = "查询下一页的第几页", required = true)
             @RequestParam(defaultValue = "1") Integer page,
-            @ApiParam(name = "pageSize", value = "分页的每一页显示的条数")
+            @ApiParam(name = "pageSize", value = "分页的每一页显示的条数", required = true)
             @RequestParam(defaultValue = "10") Integer pageSize
     ) {
         if (catId == null) {
             return IMOOCJSONResult.errorMsg(null);
-        }
-
-        if (page == null) {
-            page = 1;
-        }
-
-        if (pageSize == null) {
-            pageSize = PAGE_SIZE;
         }
 
         PagedGridResult<SearchItemsVO> grid = itemService.searchItemsByCatId(
