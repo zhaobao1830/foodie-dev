@@ -118,31 +118,33 @@ public class ItemServiceImpl implements ItemService {
         return PageUtil.build(iPage);
     }
 
-//    @Transactional(propagation = Propagation.SUPPORTS)
-//    @Override
-//    public PagedGridResult searchItemsByKeywords(String keywords, String sort, Integer page, Integer pageSize) {
-//        Map<String, Object> map = new HashMap<>();
-//        map.put("keywords", keywords);
-//        map.put("sort", sort);
-//
-//        PageHelper.startPage(page, pageSize);
-//        List<SearchItemsVO> list = itemsMapperCustom.searchItemsByKeywords(map);
-//
-//        return setterPagedGrid(list, page);
-//    }
-//
-//    @Transactional(propagation = Propagation.SUPPORTS)
-//    @Override
-//    public PagedGridResult searchItemsByCatId(Integer catId, String sort, Integer page, Integer pageSize) {
-//        Map<String, Object> map = new HashMap<>();
-//        map.put("catId", catId);
-//        map.put("sort", sort);
-//
-//        PageHelper.startPage(page, pageSize);
-//        List<SearchItemsVO> list = itemsMapperCustom.searchItemsByCatId(map);
-//
-//        return setterPagedGrid(list, page);
-//    }
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public PagedGridResult<SearchItemsVO> searchItemsByKeywords(String keywords, String sort, Integer page, Integer pageSize) {
+        // 创建page对象
+        Page<Items> page1 = new Page<>(page, pageSize);
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("keywords", keywords);
+        map.put("sort", sort);
+        IPage<SearchItemsVO> iPage = itemsMapperCustom.searchItemsByKeywords(page1, map);
+
+        return PageUtil.build(iPage);
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public PagedGridResult<SearchItemsVO> searchItemsByCatId(Integer catId, String sort, Integer page, Integer pageSize) {
+        // 创建page对象
+        Page<Items> page1 = new Page<>(page, pageSize);
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("catId", catId);
+        map.put("sort", sort);
+        IPage<SearchItemsVO> iPage = itemsMapperCustom.searchItemsByCatId(page1, map);
+
+        return PageUtil.build(iPage);
+    }
 
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
@@ -211,15 +213,5 @@ public class ItemServiceImpl implements ItemService {
             throw new RuntimeException("订单创建失败，原因：库存不足!");
         }
     }
-
-//    private PagedGridResult setterPagedGrid(List<?> list, Integer page) {
-//        PageInfo<?> pageList = new PageInfo<>(list);
-//        PagedGridResult grid = new PagedGridResult();
-//        grid.setPage(page);
-//        grid.setRows(list);
-//        grid.setTotal(pageList.getPages());
-//        grid.setRecords(pageList.getTotal());
-//        return grid;
-//    }
 }
 
