@@ -43,6 +43,7 @@ public class AddressServiceImpl implements AddressService {
             isDefault = 1;
         }
 
+        // 使用自己封装的IdWorker工具类生成唯一的id
         String addressId = sid.nextShort();
 
         // 2. 保存地址到数据库
