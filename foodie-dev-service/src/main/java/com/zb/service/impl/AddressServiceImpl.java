@@ -71,13 +71,15 @@ public class AddressServiceImpl implements AddressService {
         pendingAddress.setId(addressId);
         pendingAddress.setUpdatedTime(new Date());
 
-        userAddressMapper.updateByPrimaryKeySelective(pendingAddress);
+        userAddressMapper.updateById(pendingAddress);
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public void deleteUserAddress(String userId, String addressId) {
-        userAddressMapper.deleteByUserIdAndAddressId(userId, addressId);
+        QueryWrapper<UserAddress> wrapper = new QueryWrapper<>();
+        wrapper.lambda().eq(UserAddress::getUserId, userId).eq(UserAddress::getId, addressId);
+        userAddressMapper.delete(wrapper);
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
@@ -85,13 +87,12 @@ public class AddressServiceImpl implements AddressService {
     public void updateUserAddressToBeDefault(String userId, String addressId) {
 
         // 1. 查找默认地址，设置为不默认
-        UserAddress queryAddress = new UserAddress();
-        queryAddress.setUserId(userId);
-        queryAddress.setIsDefault(YesOrNo.YES.type);
-        List<UserAddress> list  = userAddressMapper.select(queryAddress);
+        QueryWrapper<UserAddress> wrapper = new QueryWrapper<>();
+        wrapper.lambda().eq(UserAddress::getUserId, userId).eq(UserAddress::getIsDefault, YesOrNo.YES.type);
+        List<UserAddress> list  = userAddressMapper.selectList(wrapper);
         for (UserAddress ua : list) {
             ua.setIsDefault(YesOrNo.NO.type);
-            userAddressMapper.updateByPrimaryKeySelective(ua);
+            userAddressMapper.updateById(ua);
         }
 
         // 2. 根据地址id修改为默认的地址
@@ -99,7 +100,7 @@ public class AddressServiceImpl implements AddressService {
         defaultAddress.setId(addressId);
         defaultAddress.setUserId(userId);
         defaultAddress.setIsDefault(YesOrNo.YES.type);
-        userAddressMapper.updateByPrimaryKeySelective(defaultAddress);
+        userAddressMapper.updateById(defaultAddress);
     }
 
     /**
@@ -112,9 +113,8 @@ public class AddressServiceImpl implements AddressService {
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
     public UserAddress queryUserAddress(String userId, String addressId) {
-        UserAddress singleAddress = new UserAddress();
-        singleAddress.setId(addressId);
-        singleAddress.setUserId(userId);
-        return userAddressMapper.selectOne(singleAddress);
+        QueryWrapper<UserAddress> wrapper = new QueryWrapper<>();
+        wrapper.lambda().eq(UserAddress::getId, addressId).eq(UserAddress::getUserId, userId);
+        return userAddressMapper.selectOne(wrapper);
     }
 }
