@@ -1,17 +1,8 @@
 package com.zb.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.zb.pojo.model.OrderStatus;
 
-public interface OrderStatusMapper {
-    int deleteByPrimaryKey(String orderId);
+public interface OrderStatusMapper extends BaseMapper<OrderStatus> {
 
-    int insert(OrderStatus record);
-
-    int insertSelective(OrderStatus record);
-
-    OrderStatus selectByPrimaryKey(String orderId);
-
-    int updateByPrimaryKeySelective(OrderStatus record);
-
-    int updateByPrimaryKey(OrderStatus record);
 }

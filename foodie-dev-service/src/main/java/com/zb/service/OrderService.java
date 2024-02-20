@@ -14,5 +14,5 @@ public interface OrderService {
      * @param submitOrderDTO 前端传递的订单相关信息
      * @return 订单对象
      */
-    public OrderVO createOrder(SubmitOrderDTO submitOrderDTO);
+    OrderVO createOrder(SubmitOrderDTO submitOrderDTO);
 }
