@@ -30,6 +30,7 @@ spring:
       connection-test-query: SELECT 1
   mvc:
     pathmatch:
+      # 路径匹配规则，我看有的项目里没有配置这个，也正常运行，不知道这块配置的意义
       matching-strategy: ant_path_matcher
 ############################################################
 #
