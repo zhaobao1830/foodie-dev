@@ -7,6 +7,14 @@ spring:
     username: root
     password: x5219438
 
-mybatis:
+mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+#日志配置
+logging:
+  level:
+    # web信息日志等级
+    web: info
+    # SQL日志记录
+    com.zb.mapper: info
