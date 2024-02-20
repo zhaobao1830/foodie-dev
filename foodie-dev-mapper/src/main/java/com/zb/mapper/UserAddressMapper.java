@@ -8,8 +8,6 @@ import java.util.List;
 public interface UserAddressMapper extends BaseMapper<UserAddress> {
     int deleteByPrimaryKey(String id);
 
-    int insert(UserAddress record);
-
     int insertSelective(UserAddress record);
 
     UserAddress selectByPrimaryKey(String id);

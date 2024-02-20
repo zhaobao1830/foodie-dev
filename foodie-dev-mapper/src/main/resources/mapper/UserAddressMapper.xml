@@ -31,18 +31,6 @@
     delete from user_address
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.zb.pojo.model.UserAddress" >
-    insert into user_address (id, user_id, receiver, 
-      mobile, province, city, 
-      district, detail, extand, 
-      is_default, created_time, updated_time
-      )
-    values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{receiver,jdbcType=VARCHAR}, 
-      #{mobile,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
-      #{district,jdbcType=VARCHAR}, #{detail,jdbcType=VARCHAR}, #{extand,jdbcType=VARCHAR}, 
-      #{isDefault,jdbcType=INTEGER}, #{createdTime,jdbcType=TIMESTAMP}, #{updatedTime,jdbcType=TIMESTAMP}
-      )
-  </insert>
   <insert id="insertSelective" parameterType="com.zb.pojo.model.UserAddress" >
     insert into user_address
     <trim prefix="(" suffix=")" suffixOverrides="," >

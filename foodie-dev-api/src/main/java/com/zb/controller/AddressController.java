@@ -29,8 +29,8 @@ public class AddressController {
      * 5. 设置默认地址
      */
 
-    @ApiOperation(value = "根据用户id查询收货地址列表", notes = "根据用户id查询收货地址列表", httpMethod = "POST")
-    @RequestMapping(value = "/list", method = RequestMethod.POST)
+    @ApiOperation(value = "根据用户id查询收货地址列表", notes = "根据用户id查询收货地址列表", httpMethod = "GET")
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
     public IMOOCJSONResult list(@RequestParam String userId) {
         if (StringUtils.isBlank(userId)) {
             return IMOOCJSONResult.errorMsg("");
