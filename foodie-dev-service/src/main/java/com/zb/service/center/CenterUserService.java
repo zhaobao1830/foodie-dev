@@ -1,5 +1,6 @@
 package com.zb.service.center;
 
+import com.zb.pojo.dto.CenterUserDTO;
 import com.zb.pojo.model.Users;
 
 /**
@@ -14,4 +15,12 @@ public interface CenterUserService {
      * @return
      */
     Users queryUserInfo(String userId);
+
+    /**
+     * 修改用户信息
+     * @param userId
+     * @param centerUserDTO
+     * @return
+     */
+    Users updateUserInfo(String userId, CenterUserDTO centerUserDTO);
 }
