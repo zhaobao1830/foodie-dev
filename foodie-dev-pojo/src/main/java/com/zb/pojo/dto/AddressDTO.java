@@ -1,7 +1,7 @@
 package com.zb.pojo.dto;
 
 /**
- * 用户新增或修改地址的BO
+ * 用户新增或修改地址的数据对象
  */
 public class AddressDTO {
     private String addressId;
