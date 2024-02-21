@@ -1,20 +1,10 @@
 package com.zb.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.zb.pojo.model.Users;
 import org.apache.ibatis.annotations.Param;
 
-public interface UsersMapper {
-    int deleteByPrimaryKey(String id);
-
-    int insert(Users record);
-
-    int insertSelective(Users record);
-
-    Users selectByPrimaryKey(String id);
-
-    int updateByPrimaryKeySelective(Users record);
-
-    int updateByPrimaryKey(Users record);
+public interface UsersMapper extends BaseMapper<Users> {
 
     int checkUsername(String name);
 
