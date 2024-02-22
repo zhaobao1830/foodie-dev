@@ -62,6 +62,7 @@
             </exclusions>
         </dependency>
 
+        <!-- 打包war [3] 添加依赖 -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
